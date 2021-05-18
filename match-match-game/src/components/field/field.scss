@@ -1,0 +1,15 @@
+.field {
+  width: 660px;
+  min-height: 680px;
+  background: linear-gradient(160deg, #ddbf4f 0%, #d33a32 100%);
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.65);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 3em;
+  z-index: 2;
+  pointer-events: none;
+}

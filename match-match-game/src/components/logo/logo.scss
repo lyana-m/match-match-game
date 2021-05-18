@@ -1,0 +1,15 @@
+.logo {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  height: 40px;
+}
+
+.logo__line {
+  text-align: center;
+  text-transform: uppercase;
+
+  &_2 {
+    background-color: #788aa3;
+  }
+}
