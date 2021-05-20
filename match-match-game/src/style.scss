@@ -2,6 +2,10 @@
 
 html {
   box-sizing: border-box;
+  font-family: "Roboto";
+  font-style: normal;
+  font-size: 14px;
+  color: white;
 }
 
 *,
@@ -13,20 +17,20 @@ html {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
   font-family: "Roboto";
   font-style: normal;
   font-size: 14px;
   color: white;
 }
 
-// .wrapper {
-//   width: 90%;
-//   margin: 0 auto;
-// }
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
 
 // header
 

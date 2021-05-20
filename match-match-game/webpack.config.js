@@ -10,6 +10,7 @@ const devServer = (isDev) => !isDev ? {} : {
     hot: true,
     port: 8080,
     contentBase: path.join(__dirname, 'public'),
+    historyApiFallback: true,
   }
 };
 
@@ -26,7 +27,8 @@ module.exports = ({
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    assetModuleFilename: 'assets/[name][ext]'
+    assetModuleFilename: 'assets/[name][ext]',
+    publicPath: '/',
   },
   module: {
     rules: [{
