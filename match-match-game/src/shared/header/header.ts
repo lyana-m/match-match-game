@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import './header.scss';
 import { BaseComponent } from '../baseComponent';
 import { NavItem } from './nav-item/nav-item';

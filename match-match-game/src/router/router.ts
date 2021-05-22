@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 interface IRoute {
   [key: string]: string;
 }

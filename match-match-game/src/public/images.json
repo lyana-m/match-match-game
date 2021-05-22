@@ -1,0 +1,15 @@
+[
+  {
+    "category": "animal",
+    "images": [
+       "cat.png",
+       "chicken.png",
+       "dog.png",
+       "elephant.png",
+       "hedgehog.png",
+       "pig.png",
+       "sheep.png",
+       "turtle.png"
+    ]
+  }
+]

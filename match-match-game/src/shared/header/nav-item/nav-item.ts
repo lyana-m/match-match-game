@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import './nav-item.scss';
 import { BaseComponent } from '../../baseComponent';
 import { router } from '../../../index';
