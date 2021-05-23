@@ -64,5 +64,24 @@
 .card_match {
   cursor: default;
   background: #1bc45f;
-  font-size: 33px;
+  // font-size: 33px;
+}
+
+.card_failed {
+  cursor: default;
+  background: #e94606;
+}
+
+.timer {
+  width: 90px;
+  height: 60px;
+  padding: 15px;
+  margin: 0 auto 25px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333333;
+  background: #e8ddb5;
+  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 }

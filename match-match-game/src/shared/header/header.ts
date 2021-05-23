@@ -45,14 +45,15 @@ export class Header extends BaseComponent {
       }
       navList.element.appendChild(navItem.element);
     });
-
+    btn.element.classList.add('btn-reg');
     nav.element.appendChild(navList.element);
-    logo.element.innerHTML = `<span class="logo__line logo__line_1">match</span>
-                              <span class="logo__line logo__line_2">match</span>`;
+    logo.element.innerHTML = `
+      <span class="logo__line logo__line_1">match</span>
+      <span class="logo__line logo__line_2">match</span>`;
     headerInner.element.appendChild(logo.element);
     headerInner.element.appendChild(nav.element);
     headerInner.element.appendChild(btn.element);
     wrapper.element.appendChild(headerInner.element);
-    this.element.appendChild(wrapper.element);
+    this.element.appendChild(wrapper.element);    
   }
 }

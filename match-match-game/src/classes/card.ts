@@ -25,4 +25,16 @@ export class Card extends BaseComponent {
     this.element.classList.remove('card_show', 'card_open');
     this.element.classList.add('card_close');
   }
+
+  showSuccessState() {
+    this.element.classList.add('card_match');    
+  }
+
+  showFailedState() {
+    this.element.classList.add('card_failed');
+  }
+
+  resetFailedState() {
+    this.element.classList.remove('card_failed');
+  }
 }

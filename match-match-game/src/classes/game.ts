@@ -1,6 +1,7 @@
 import { BaseComponent } from '../shared/baseComponent';
 import { Card } from './card';
 import { Field } from './field';
+import { Timer } from './timer';
 
 export class Game extends BaseComponent {
   // state = {
@@ -20,6 +21,8 @@ export class Game extends BaseComponent {
   // }
   private readonly field: Field;
 
+  private readonly timer: Timer;
+
   private activeCard?: Card;
 
   private isAnimate = false;
@@ -27,10 +30,13 @@ export class Game extends BaseComponent {
   constructor() {
     super();
     this.field = new Field();
+    this.timer = new Timer();
+    this.element.appendChild(this.timer.element);
     this.element.appendChild(this.field.element);
   }
 
   startGame(images: string[]) {
+    setTimeout(() => this.timer.startTimer(), 3000);
     this.field.clear();
 
     const cards = images
@@ -44,6 +50,7 @@ export class Game extends BaseComponent {
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));
 
     this.field.addCards(cards);
+
   }
 
   private async cardHandler(card: Card) {
@@ -59,9 +66,20 @@ export class Game extends BaseComponent {
       return;
     }
     if (this.activeCard.images !== card.images) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 300));
+      this.activeCard.showFailedState();
+      card.showFailedState();
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      this.activeCard.resetFailedState();
+      card.resetFailedState();
+      await new Promise(resolve => setTimeout(resolve, 300));
       this.activeCard.closeCard();
-      card.closeCard();  
+      card.closeCard();
+    }
+    if (this.activeCard.images === card.images) {
+      await new Promise(resolve => setTimeout(resolve, 300));
+      this.activeCard.showSuccessState();
+      card.showSuccessState();
     }
 
     this.activeCard = undefined;
