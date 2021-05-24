@@ -1,5 +1,5 @@
 import './registration.scss';
-import { validate } from '../../helpers/validator';
+import { validate, clearForm } from '../../helpers/validator';
 import { BaseComponent } from "../baseComponent";
 import { Button } from '../header/button/button';
 import { FormField } from './form-field/form-fiels';
@@ -53,8 +53,8 @@ export class Registration extends BaseComponent {
     this.element.appendChild(form.element);
     this.element.appendChild(overlay.element);
 
-    btnReset.element.addEventListener('click', () => this.hideRegistrationForm());
-    overlay.element.addEventListener('click', () => this.hideRegistrationForm());
+    btnReset.element.addEventListener('click', () => clearForm());
+    overlay.element.addEventListener('click', () => this.hideRegistrationForm());    
     form.element.addEventListener('submit', (e) => {
       e.preventDefault();
       validate();      
@@ -67,5 +67,5 @@ export class Registration extends BaseComponent {
 
   hideRegistrationForm() {
     this.element.style.display = 'none';
-  }
+  }  
 }

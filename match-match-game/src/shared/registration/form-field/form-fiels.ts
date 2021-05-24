@@ -27,5 +27,5 @@ export class FormField extends BaseComponent {
     this.element.appendChild(input.element);
     this.element.appendChild(label.element);
     this.element.appendChild(small.element);
-  }
+  }  
 }

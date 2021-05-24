@@ -17,3 +17,9 @@
 .btn:hover {
   background-color: #b2c9ab;
 }
+
+.btn-disabled {
+  opacity: .4;
+  cursor: default;
+  pointer-events: none;
+}
