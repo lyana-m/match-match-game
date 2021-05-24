@@ -42,7 +42,5 @@ export class App {
 
     const btnReg = document.querySelector('.btn-reg');
     btnReg?.addEventListener('click', () => this.registration.showRegistrationForm());
-  }
-
-  
+  }  
 }

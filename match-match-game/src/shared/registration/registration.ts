@@ -2,6 +2,7 @@ import './registration.scss';
 import { validate } from '../../helpers/validator';
 import { BaseComponent } from "../baseComponent";
 import { Button } from '../header/button/button';
+import { FormField } from './form-field/form-fiels';
 
 export class Registration extends BaseComponent {
   constructor() {
@@ -16,35 +17,27 @@ export class Registration extends BaseComponent {
     const btnContainer = new BaseComponent('div', ['btn-container']);
     const formHeader = new BaseComponent('h1', ['form-header']);
     const info = new BaseComponent('div', ['info']);
+    const fieldsWrapper = new BaseComponent('div', []);
+    const firstName = new FormField('text', 'first-name', 'First name');
+    const lastName = new FormField('text', 'last-name', 'Last name');
+    const email = new FormField('email', 'e-mail', 'E-mail');
+    const photoContainer = new BaseComponent('div', []);
     const btnSubmit = new Button();
     const btnReset = new Button();
 
     formHeader.element.innerHTML = `
     Register new Player`;
-    info.element.innerHTML = `
-          <div>
-            <div class="field-container">
-              <input type="name" class="first-name" placeholder=" ">
-              <label>First name</label>
-              <small>Error message</small>
-            </div>
-            <div class="field-container">
-              <input type="name" class="last-name" placeholder=" ">
-              <label>Last name</label>
-              <small>Error message</small>
-            </div>
-            <div class="field-container">
-              <input type="email" class="e-mail" placeholder=" ">
-              <label>E-mail</label>
-              <small>Error message</small>
-            </div>
-          </div>
-          <div>
-            <label for="photo-upload" class="custom-photo-upload">
-              <img class="image-upload" src="./assets/icons/user.svg" alt="user-photo">
-              <input type="file" class="photo" id="photo-upload">
-            </label>
-          </div>`;
+
+    photoContainer.element.innerHTML = `
+              <label for="photo-upload" class="custom-photo-upload">
+               <img class="image-upload" src="./assets/icons/user.svg" alt="user-photo">
+               <input type="file" class="photo" id="photo-upload">
+              </label>`;   
+    info.element.appendChild(fieldsWrapper.element);
+    info.element.appendChild(photoContainer.element);
+    fieldsWrapper.element.appendChild(firstName.element);
+    fieldsWrapper.element.appendChild(lastName.element);
+    fieldsWrapper.element.appendChild(email.element);
     btnSubmit.element.classList.add('btn', 'btn-submit');
     btnReset.element.classList.add('btn', 'btn-reset');
     btnSubmit.element.setAttribute('type', 'submit');
