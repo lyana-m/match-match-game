@@ -1,4 +1,5 @@
 import './registration.scss';
+import { validate } from '../../helpers/validator';
 import { BaseComponent } from "../baseComponent";
 import { Button } from '../header/button/button';
 
@@ -22,17 +23,20 @@ export class Registration extends BaseComponent {
     Register new Player`;
     info.element.innerHTML = `
           <div>
-            <div class="placeholder-container">
+            <div class="field-container">
               <input type="name" class="first-name" placeholder=" ">
               <label>First name</label>
+              <small>Error message</small>
             </div>
-            <div class="placeholder-container">
+            <div class="field-container">
               <input type="name" class="last-name" placeholder=" ">
               <label>Last name</label>
+              <small>Error message</small>
             </div>
-            <div class="placeholder-container">
+            <div class="field-container">
               <input type="email" class="e-mail" placeholder=" ">
               <label>E-mail</label>
+              <small>Error message</small>
             </div>
           </div>
           <div>
@@ -59,8 +63,8 @@ export class Registration extends BaseComponent {
     btnReset.element.addEventListener('click', () => this.hideRegistrationForm());
     overlay.element.addEventListener('click', () => this.hideRegistrationForm());
     form.element.addEventListener('submit', (e) => {
-      // validate();
       e.preventDefault();
+      validate();      
     })
   }
 
