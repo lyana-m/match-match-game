@@ -7,6 +7,7 @@ import { Game } from './game';
 import { CardCategory } from '../shared/card-categories';
 import { Registration } from '../shared/registration/registration';
 import { validate } from '../helpers/validator';
+import { About } from '../pages/about/about';
 
 export class App {
   private readonly rootElement: HTMLElement;
@@ -17,7 +18,9 @@ export class App {
 
   private readonly game: Game;
 
-  private readonly registration: Registration;  
+  private readonly registration: Registration;
+
+  private readonly about: About; 
 
   constructor(element: HTMLElement) {
     this.rootElement = element;
@@ -27,9 +30,11 @@ export class App {
     this.main.element.setAttribute('data-router-outlet', 'data-router-outlet');
     this.rootElement.appendChild(this.main.element);
     this.game = new Game();
-    this.main.element.appendChild(this.game.element);
+    // this.main.element.appendChild(this.game.element);
     this.registration = new Registration();
-    this.rootElement.appendChild(this.registration.element);      
+    this.rootElement.appendChild(this.registration.element);
+    this.about = new About();
+    // this.main.element.appendChild(this.about.element);    
   }
 
   async start() {
