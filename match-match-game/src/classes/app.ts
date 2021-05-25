@@ -23,7 +23,7 @@ export class App {
 
   // private readonly about: About; 
 
-  private readonly settings: Settings; 
+  // private readonly settings: Settings; 
 
   constructor(element: HTMLElement) {
     this.rootElement = element;
@@ -39,7 +39,7 @@ export class App {
     // this.about = new About();
     // console.log(this.about);
     // this.main.element.appendChild(this.about.element);
-    this.settings = new Settings();
+    // this.settings = new Settings();
     // this.main.element.appendChild(this.settings.element);    
   }
 
