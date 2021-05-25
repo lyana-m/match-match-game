@@ -8,6 +8,7 @@ import { CardCategory } from '../shared/card-categories';
 import { Registration } from '../shared/registration/registration';
 import { validate } from '../helpers/validator';
 import { About } from '../pages/about/about';
+import { Settings } from '../pages/settings/settings';
 
 export class App {
   private readonly rootElement: HTMLElement;
@@ -20,7 +21,9 @@ export class App {
 
   private readonly registration: Registration;
 
-  private readonly about: About; 
+  // private readonly about: About; 
+
+  private readonly settings: Settings; 
 
   constructor(element: HTMLElement) {
     this.rootElement = element;
@@ -30,11 +33,14 @@ export class App {
     this.main.element.setAttribute('data-router-outlet', 'data-router-outlet');
     this.rootElement.appendChild(this.main.element);
     this.game = new Game();
-    // this.main.element.appendChild(this.game.element);
+    this.main.element.appendChild(this.game.element);
     this.registration = new Registration();
     this.rootElement.appendChild(this.registration.element);
-    this.about = new About();
-    // this.main.element.appendChild(this.about.element);    
+    // this.about = new About();
+    // console.log(this.about);
+    // this.main.element.appendChild(this.about.element);
+    this.settings = new Settings();
+    // this.main.element.appendChild(this.settings.element);    
   }
 
   async start() {

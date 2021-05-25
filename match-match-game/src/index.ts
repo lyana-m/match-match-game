@@ -9,6 +9,6 @@ export let router: Router;
 
 export default window.onload = () => {
   const app = new App(document.body);
-  // router = new Router(routes);
+  router = new Router(routes);
   app.start();
 };

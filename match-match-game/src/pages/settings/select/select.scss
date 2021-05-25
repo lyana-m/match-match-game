@@ -1,0 +1,24 @@
+.dropdown {
+  margin: 0 auto 30px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.dropdown-header {
+  margin-bottom: 20px;
+}
+
+.select {
+	margin: 0 auto;
+	color: #e8ddb5;
+  font-size: 18px;
+	width: 310px;
+	padding: 15px;	
+	cursor: pointer;
+	background: #788aa3;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+}
+

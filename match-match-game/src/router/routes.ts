@@ -1,7 +1,10 @@
+import { About } from "../pages/about/about";
+import { Settings } from "../pages/settings/settings";
+
 export const routes = [
   {
     path: '',
-    template: '<h1 style="color: black">About</h1>',
+    template: new About().element.outerHTML,
   },
   {
     path: '/score',
@@ -9,6 +12,6 @@ export const routes = [
   },
   {
     path: '/settings',
-    template: '<h1 style="color: black">Settings</h1>',
+    template: new Settings().element.outerHTML,
   },
 ];
