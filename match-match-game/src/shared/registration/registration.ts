@@ -6,7 +6,7 @@ import { FormField } from './form-field/form-fiels';
 
 export class Registration extends BaseComponent {
   constructor() {
-    super('div', ['registration-modal']);
+    super('div', ['modal']);
     this.render();
   }
 

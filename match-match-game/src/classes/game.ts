@@ -1,3 +1,4 @@
+import { WinModal } from '../pages/game/win-modal/win-modal';
 import { BaseComponent } from '../shared/baseComponent';
 import { Card } from './card';
 import { Field } from './field';
@@ -27,12 +28,24 @@ export class Game extends BaseComponent {
 
   private isAnimate = false;
 
+  private wrongPairs: number = 0;
+
+  private rightPairs: number = 0;
+
+  private pairs: number = 0;
+
+  private rootElement = document.querySelector('body');
+
+  private readonly winModal: WinModal;
+
   constructor() {
     super();
     this.field = new Field();
     this.timer = new Timer();
+    this.winModal = new WinModal();
     this.element.appendChild(this.timer.element);
     this.element.appendChild(this.field.element);
+    this.rootElement?.appendChild(this.winModal.element);
   }
 
   startGame(images: string[]) {
@@ -42,15 +55,14 @@ export class Game extends BaseComponent {
     const cards = images
       .concat(images)
       .map((url) => {
-        console.log('url', url);
         return new Card(url);
       })
       .sort(() => Math.random() - 0.5);
 
+    this.pairs = cards.length / 2;
     cards.forEach((card) => card.element.addEventListener('click', () => this.cardHandler(card)));
 
     this.field.addCards(cards);
-
   }
 
   private async cardHandler(card: Card) {
@@ -75,14 +87,28 @@ export class Game extends BaseComponent {
       await new Promise(resolve => setTimeout(resolve, 300));
       this.activeCard.closeCard();
       card.closeCard();
+      this.wrongPairs++;
     }
     if (this.activeCard.images === card.images) {
       await new Promise(resolve => setTimeout(resolve, 300));
       this.activeCard.showSuccessState();
       card.showSuccessState();
+      this.rightPairs++;
     }
 
     this.activeCard = undefined;
     this.isAnimate = false;
+    console.log('rightPairs', this.rightPairs);
+    console.log('wrongPairs', this.wrongPairs);
+    console.log('pairs', this.pairs);
+
+    if (this.rightPairs === this.pairs) {
+      this.successFinishGame();
+    }
+  }
+
+  successFinishGame() {
+    this.timer.stopTimer();
+    this.winModal.showModal(); 
   }
 }

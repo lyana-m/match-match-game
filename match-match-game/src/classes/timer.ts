@@ -3,6 +3,8 @@ import { BaseComponent } from "../shared/baseComponent";
 
 export class Timer extends BaseComponent {
 
+  private timer: NodeJS.Timer | null = null;
+
   constructor() {
     super('div', ['timer']);
     this.element.innerHTML = '00:00';
@@ -10,7 +12,7 @@ export class Timer extends BaseComponent {
 
   startTimer() {
     let timerUnit = 0;
-    const timer = setInterval(() => {  
+    this.timer = setInterval(() => {
       let minutes = Math.floor(timerUnit / 60);
       let seconds = timerUnit % 60;
       let strTimer = `
@@ -18,5 +20,11 @@ export class Timer extends BaseComponent {
       this.element.innerHTML = strTimer;
       timerUnit++;
     }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   }
 }
