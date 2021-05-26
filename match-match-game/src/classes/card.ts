@@ -27,7 +27,7 @@ export class Card extends BaseComponent {
   }
 
   showSuccessState() {
-    this.element.classList.add('card_match');    
+    this.element.classList.add('card_match');
   }
 
   showFailedState() {

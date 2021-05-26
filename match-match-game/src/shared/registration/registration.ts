@@ -1,6 +1,6 @@
 import './registration.scss';
 import { validate, clearForm } from '../../helpers/validator';
-import { BaseComponent } from "../baseComponent";
+import { BaseComponent } from '../baseComponent';
 import { Button } from '../header/button/button';
 import { FormField } from './form-field/form-fiels';
 
@@ -32,7 +32,7 @@ export class Registration extends BaseComponent {
               <label for="photo-upload" class="custom-photo-upload">
                <img class="image-upload" src="./assets/icons/user.svg" alt="user-photo">
                <input type="file" class="photo" id="photo-upload">
-              </label>`;   
+              </label>`;
     info.element.appendChild(fieldsWrapper.element);
     info.element.appendChild(photoContainer.element);
     fieldsWrapper.element.appendChild(firstName.element);
@@ -41,9 +41,9 @@ export class Registration extends BaseComponent {
     btnSubmit.element.classList.add('btn', 'btn-submit');
     btnReset.element.classList.add('btn', 'btn-reset');
     btnSubmit.element.setAttribute('type', 'submit');
-    btnReset.element.setAttribute('type', 'reset');    
+    btnReset.element.setAttribute('type', 'reset');
     btnSubmit.element.innerHTML = 'Add User';
-    btnReset.element.innerHTML = 'Cancel';    
+    btnReset.element.innerHTML = 'Cancel';
     btnContainer.element.appendChild(btnSubmit.element);
     btnContainer.element.appendChild(btnReset.element);
     infoContainer.element.appendChild(formHeader.element);
@@ -54,11 +54,11 @@ export class Registration extends BaseComponent {
     this.element.appendChild(overlay.element);
 
     btnReset.element.addEventListener('click', () => clearForm());
-    overlay.element.addEventListener('click', () => this.hideRegistrationForm());    
+    overlay.element.addEventListener('click', () => this.hideRegistrationForm());
     form.element.addEventListener('submit', (e) => {
       e.preventDefault();
-      validate();      
-    })
+      validate();
+    });
   }
 
   showRegistrationForm() {
@@ -67,5 +67,5 @@ export class Registration extends BaseComponent {
 
   hideRegistrationForm() {
     this.element.style.display = 'none';
-  }  
+  }
 }

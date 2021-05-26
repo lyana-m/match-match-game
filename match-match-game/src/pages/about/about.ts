@@ -1,6 +1,6 @@
 import './about.scss';
-import { BaseComponent } from "../../shared/baseComponent";
-import { Rule } from "./rule/rule";
+import { BaseComponent } from '../../shared/baseComponent';
+import { Rule } from './rule/rule';
 
 export class About extends BaseComponent {
   ruleProps = [
@@ -8,21 +8,21 @@ export class About extends BaseComponent {
       src: './assets/images/form.png',
       alt: 'registration-form',
       text: 'Register new player in game',
-      number: '1'
-    },    
+      number: '1',
+    },
     {
       src: './assets/images/settings.png',
       alt: 'settings',
       text: 'Configure your game settings',
-      number: '2'
+      number: '2',
     },
     {
       src: './assets/images/game.png',
       alt: 'game',
       text: 'Start you new game! Remember card positions and match it before times up',
-      number: '3'
-    }
-  ]
+      number: '3',
+    },
+  ];
 
   constructor() {
     super('div', ['game-rules']);

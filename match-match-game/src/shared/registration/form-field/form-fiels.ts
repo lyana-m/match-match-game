@@ -1,10 +1,12 @@
 import './form-field.scss';
-import { BaseComponent } from "../../baseComponent";
+import { BaseComponent } from '../../baseComponent';
 import { validate } from '../../../helpers/validator';
 
 export class FormField extends BaseComponent {
   inputClass: string;
+
   inputType: string;
+
   label: string;
 
   constructor(inputType: string, inputClass: string, label: string) {
@@ -27,5 +29,5 @@ export class FormField extends BaseComponent {
     this.element.appendChild(input.element);
     this.element.appendChild(label.element);
     this.element.appendChild(small.element);
-  }  
+  }
 }

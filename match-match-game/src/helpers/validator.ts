@@ -1,4 +1,6 @@
-export function validate() {  
+/* eslint-disable */
+
+export function validate() {
   validateFirstName();
   validateLastName();
   validateEmail();
@@ -18,41 +20,41 @@ export function clearForm() {
 
 function validateFirstName() {
   const firstName = <HTMLInputElement>document.querySelector('.first-name');
-  if (!firstName.value)  {
+  if (!firstName.value) {
     setErrorFor(firstName, 'First name cannot be blank');
-	} else if (firstName.value.length > 30) {
+  } else if (firstName.value.length > 30) {
     setErrorFor(firstName, 'First name must not exceed 30 characters');
   } else if (!isNameValid(firstName.value)) {
     setErrorFor(firstName, 'Not a valid first name');
   } else {
-		setSuccessFor(firstName);
-	}
+    setSuccessFor(firstName);
+  }
 }
 
 function validateLastName() {
   const lastName = <HTMLInputElement>document.querySelector('.last-name');
-  if (!lastName.value)  {
+  if (!lastName.value) {
     setErrorFor(lastName, 'Last name cannot be blank');
-	} else if (lastName.value.length > 30) {
+  } else if (lastName.value.length > 30) {
     setErrorFor(lastName, 'Last name must not exceed 30 characters');
   } else if (!isNameValid(lastName.value)) {
     setErrorFor(lastName, 'Not a valid last name');
   } else {
-		setSuccessFor(lastName);
-	}
+    setSuccessFor(lastName);
+  }
 }
 
 function validateEmail() {
   const email = <HTMLInputElement>document.querySelector('.e-mail');
-  if (!email.value)  {
+  if (!email.value) {
     setErrorFor(email, 'E-mail cannot be blank');
-	} else if (email.value.length > 30) {
+  } else if (email.value.length > 30) {
     setErrorFor(email, 'E-mail must not exceed 30 characters');
   } else if (!isEmailValid(email.value)) {
     setErrorFor(email, 'Not a valid e-mail');
   } else {
-		setSuccessFor(email);
-	}  
+    setSuccessFor(email);
+  }
 }
 
 function setErrorFor(input: HTMLInputElement, message: string) {

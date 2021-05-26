@@ -4,6 +4,7 @@ import './header.scss';
 import { BaseComponent } from '../baseComponent';
 import { NavItem } from './nav-item/nav-item';
 import { Button } from './button/button';
+import { Game } from '../../classes/game';
 
 export class Header extends BaseComponent {
   navItemProps = [
@@ -24,6 +25,8 @@ export class Header extends BaseComponent {
     },
   ];
 
+  // private btnStart = document.querySelector('.btn-start');
+
   constructor() {
     super('header', ['header']);
     this.render();
@@ -35,8 +38,14 @@ export class Header extends BaseComponent {
     const logo = new BaseComponent('div', ['logo']);
     const nav = new BaseComponent('nav', ['nav']);
     const navList = new BaseComponent('ul', ['nav__list']);
-    const btn = new Button();
-    btn.element.innerHTML = 'register new player';
+    const btnReg = new Button();
+    const btnStart = new Button();
+    const btnStop = new Button();
+    btnReg.element.innerHTML = 'register new player';
+    btnStart.element.innerHTML = 'start game';
+    btnStop.element.innerHTML = 'stop game';
+    btnStart.element.classList.add('btn-start')
+    btnStop.element.classList.add('btn-stop')
 
     this.navItemProps.forEach((item) => {
       const navItem = new NavItem(item);
@@ -45,14 +54,16 @@ export class Header extends BaseComponent {
       }
       navList.element.appendChild(navItem.element);
     });
-    btn.element.classList.add('btn-reg');
+    btnReg.element.classList.add('btn-reg');
     nav.element.appendChild(navList.element);
     logo.element.innerHTML = `
       <span class="logo__line logo__line_1">match</span>
       <span class="logo__line logo__line_2">match</span>`;
     headerInner.element.appendChild(logo.element);
     headerInner.element.appendChild(nav.element);
-    headerInner.element.appendChild(btn.element);
+    headerInner.element.appendChild(btnStop.element);
+    headerInner.element.appendChild(btnStart.element);
+    headerInner.element.appendChild(btnReg.element);
     wrapper.element.appendChild(headerInner.element);
     this.element.appendChild(wrapper.element);    
   }

@@ -1,23 +1,28 @@
+/* eslint-disable */
+
 import './win-modal.scss';
-import { BaseComponent } from "../../../shared/baseComponent"
-import { Button } from "../../../shared/header/button/button";
+import { BaseComponent } from '../../../shared/baseComponent';
+import { Button } from '../../../shared/header/button/button';
 
 export class WinModal extends BaseComponent {
-  time: string = '';
+  time = '';
 
   constructor() {
     super('div', ['win-modal']);
     this.render();
   }
+
   render() {
     const winCongrats = new BaseComponent('div', ['win-congrats']);
     const overlay = new BaseComponent('div', ['win-overlay']);
     const congrats = new BaseComponent('h2', ['congrats']);
     const btn = new Button();
+    const aboutLink: HTMLElement = document.querySelectorAll('.nav__link')[0] as HTMLElement;
     congrats.element.innerHTML = '';
-    btn.element.classList.add('btn-ok')
+    btn.element.classList.add('btn-ok');
     btn.element.innerHTML = 'ok';
     btn.element.addEventListener('click', () => this.closeModal());
+    btn.element.addEventListener('click', () => aboutLink.click());
     winCongrats.element.appendChild(congrats.element);
     winCongrats.element.appendChild(btn.element);
     this.element.appendChild(winCongrats.element);

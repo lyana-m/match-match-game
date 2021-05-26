@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { BaseComponent } from '../../../shared/baseComponent';
 import { Option } from '../option/option';
 import { ISettings } from '../settings';
@@ -6,7 +7,7 @@ import './select.scss';
 export interface IOptionProps {
   [key: string]: IOptionInnerProps[],
   cardType: IOptionInnerProps[],
-  difficulty: IOptionInnerProps[],  
+  difficulty: IOptionInnerProps[],
 }
 
 export interface IOptionInnerProps {
@@ -19,43 +20,43 @@ export class Select extends BaseComponent {
     cardType: [
       {
         attrubutes: [
-          { selected: '' }, { disabled: '' }
+          { selected: '' }, { disabled: '' },
         ],
-        text: 'select game cards type'
+        text: 'select game cards type',
       },
       {
         attrubutes: [
-          { value: 'animal' }
+          { value: 'animal' },
         ],
-        text: 'animal'
+        text: 'animal',
       },
       {
         attrubutes: [
-          { value: 'insects' }
+          { value: 'insects' },
         ],
-        text: 'insects'
-      }
+        text: 'insects',
+      },
     ],
     difficulty: [
       {
         attrubutes: [
-          { selected: '' }, { disabled: '' }
+          { selected: '' }, { disabled: '' },
         ],
-        text: 'select game type'
+        text: 'select game type',
       },
       {
         attrubutes: [
-          { value: '16' }
+          { value: '16' },
         ],
-        text: '4x4'
+        text: '4x4',
       },
       {
         attrubutes: [
-          { value: '36' }
+          { value: '36' },
         ],
-        text: '6x6'
-      }
-    ]
+        text: '6x6',
+      },
+    ],
   };
 
   constructor(item: ISettings) {
@@ -71,7 +72,7 @@ export class Select extends BaseComponent {
     this.optionProps[dropdown.id].forEach((item: IOptionInnerProps) => {
       const option = new Option(item);
       select.element.appendChild(option.element);
-    })
+    });
     this.element.appendChild(header.element);
     this.element.appendChild(select.element);
   }

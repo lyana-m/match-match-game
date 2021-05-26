@@ -1,11 +1,12 @@
 import './rule.scss';
-import { BaseComponent } from "../../../shared/baseComponent";
+import { BaseComponent } from '../../../shared/baseComponent';
 
 export class Rule extends BaseComponent {
   constructor(item: any) {
     super('div', ['rule-card']);
     this.render(item);
   }
+
   render(item: any) {
     const rule = new BaseComponent('div', ['rule']);
     const text = new BaseComponent('p', ['rule-content']);

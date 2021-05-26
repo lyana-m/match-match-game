@@ -1,3 +1,5 @@
+import '../public/images.json';
+import { CardCategory } from '../shared/card-categories';
 import { WinModal } from '../pages/game/win-modal/win-modal';
 import { BaseComponent } from '../shared/baseComponent';
 import { Card } from './card';
@@ -22,21 +24,21 @@ export class Game extends BaseComponent {
   // }
   private readonly field: Field;
 
-  private readonly timer: Timer;
+  timer: Timer;
 
   private activeCard?: Card;
 
   private isAnimate = false;
 
-  private wrongPairs: number = 0;
+  private wrongPairs = 0;
 
-  private rightPairs: number = 0;
+  private rightPairs = 0;
 
-  private pairs: number = 0;
+  private pairs = 0;
 
   private rootElement = document.querySelector('body');
 
-  private readonly winModal: WinModal;
+  private readonly winModal: WinModal;  
 
   constructor() {
     super();
@@ -45,18 +47,21 @@ export class Game extends BaseComponent {
     this.winModal = new WinModal();
     this.element.appendChild(this.timer.element);
     this.element.appendChild(this.field.element);
-    this.rootElement?.appendChild(this.winModal.element);
+    this.rootElement?.appendChild(this.winModal.element);    
   }
 
-  startGame(images: string[]) {
+  async startGame() {
+    const res = await fetch('../public/images.json');
+    const categories: CardCategory[] = await res.json();
+    const cat = categories[0];
+    const images = cat.images.map((name) => `${cat.category}/${name}`);
+
     setTimeout(() => this.timer.startTimer(), 3000);
     this.field.clear();
 
     const cards = images
       .concat(images)
-      .map((url) => {
-        return new Card(url);
-      })
+      .map((url) => new Card(url))
       .sort(() => Math.random() - 0.5);
 
     this.pairs = cards.length / 2;
@@ -78,19 +83,19 @@ export class Game extends BaseComponent {
       return;
     }
     if (this.activeCard.images !== card.images) {
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
       this.activeCard.showFailedState();
       card.showFailedState();
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       this.activeCard.resetFailedState();
       card.resetFailedState();
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
       this.activeCard.closeCard();
       card.closeCard();
       this.wrongPairs++;
     }
     if (this.activeCard.images === card.images) {
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
       this.activeCard.showSuccessState();
       card.showSuccessState();
       this.rightPairs++;
@@ -107,8 +112,14 @@ export class Game extends BaseComponent {
     }
   }
 
-  successFinishGame() {
+  stopGame() {
+    const about: HTMLElement = document.querySelectorAll('.nav__link')[0] as HTMLElement;
     this.timer.stopTimer();
-    this.winModal.showModal(); 
+    about.click();
+  }
+
+  successFinishGame() {  
+    this.timer.stopTimer();
+    this.winModal.showModal();    
   }
 }
