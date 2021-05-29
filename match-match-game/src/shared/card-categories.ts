@@ -1,4 +1,5 @@
 export interface CardCategory {
-  category: string;
-  images: string[];
+  [key: string]: string[],
+  animal: string[],
+  food: string[]
 }

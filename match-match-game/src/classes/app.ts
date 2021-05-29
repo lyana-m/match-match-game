@@ -4,11 +4,8 @@ import '../style.scss';
 import { Header } from '../shared/header/header';
 import { BaseComponent } from '../shared/baseComponent';
 import { Game } from './game';
-import { CardCategory } from '../shared/card-categories';
 import { Registration } from '../shared/registration/registration';
 import { validate } from '../helpers/validator';
-// import { About } from '../pages/about/about';
-// import { Settings } from '../pages/settings/settings';
 
 export class App {
   private readonly rootElement: HTMLElement;
@@ -19,9 +16,7 @@ export class App {
 
   private readonly game: Game;
 
-  private readonly registration: Registration;
-
-  // private btnStart = document.querySelector('.btn-start');
+  private readonly registration: Registration;  
 
   constructor(element: HTMLElement) {
     this.rootElement = element;
@@ -30,24 +25,12 @@ export class App {
     this.main = new BaseComponent('main', ['main']);
     this.main.element.setAttribute('data-router-outlet', 'data-router-outlet');
     this.rootElement.appendChild(this.main.element);
-    this.game = new Game();
-    // this.main.element.appendChild(this.game.element);
+    this.game = new Game();    
     this.registration = new Registration();
-    this.rootElement.appendChild(this.registration.element);
-    // this.about = new About();
-    // console.log(this.about);
-    // this.main.element.appendChild(this.about.element);
-    // this.settings = new Settings();
-    // this.main.element.appendChild(this.settings.element);    
+    this.rootElement.appendChild(this.registration.element);       
   }
 
-  start() {
-    // const res = await fetch('../public/images.json');
-    // const categories: CardCategory[] = await res.json();
-    // const cat = categories[0];
-    // const images = cat.images.map((name) => `${cat.category}/${name}`);
-    // this.game.startGame(images);
-
+  start() {    
     const btnReg = document.querySelector('.btn-reg');
     btnReg?.addEventListener('click', () => validate());
     btnReg?.addEventListener('click', () => this.registration.showRegistrationForm());
@@ -63,5 +46,24 @@ export class App {
 
     const links = document.querySelectorAll('.nav__link');
     links.forEach(link => link.addEventListener('click', () => this.game.timer.stopTimer()));
+    
+    const inputFile: HTMLInputElement = document.querySelector('input[type="file"]') as HTMLInputElement;
+    inputFile?.addEventListener('change', () => {
+      const canvas: HTMLCanvasElement = document.querySelector('.canvas') as HTMLCanvasElement;      
+      const context = canvas!.getContext("2d");
+      const file = inputFile.files![0];
+      const reader = new FileReader();
+      reader.onload = (event: Event) => {
+        const image = new Image();        
+        image.src = (<FileReader>event.target).result as string;
+        console.log(image.src);
+        image.onload = () => {
+          canvas.width = image.width;
+          canvas.height = image.height;
+          context!.drawImage(image, 0, 0)
+        }
+      }      
+      reader.readAsDataURL(file);
+    })
   }  
 }

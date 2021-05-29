@@ -3,6 +3,7 @@ import { validate, clearForm } from '../../helpers/validator';
 import { BaseComponent } from '../baseComponent';
 import { Button } from '../header/button/button';
 import { FormField } from './form-field/form-fiels';
+import { UserPhoto } from './user-photo/user-photo';
 
 export class Registration extends BaseComponent {
   constructor() {
@@ -20,21 +21,16 @@ export class Registration extends BaseComponent {
     const fieldsWrapper = new BaseComponent('div', []);
     const firstName = new FormField('text', 'first-name', 'First name');
     const lastName = new FormField('text', 'last-name', 'Last name');
-    const email = new FormField('email', 'e-mail', 'E-mail');
-    const photoContainer = new BaseComponent('div', []);
+    const email = new FormField('email', 'e-mail', 'E-mail');    
+    const userPhoto = new UserPhoto();
     const btnSubmit = new Button();
     const btnReset = new Button();
 
     formHeader.element.innerHTML = `
     Register new Player`;
-
-    photoContainer.element.innerHTML = `
-              <label for="photo-upload" class="custom-photo-upload">
-               <img class="image-upload" src="./assets/icons/user.svg" alt="user-photo">
-               <input type="file" class="photo" id="photo-upload">
-              </label>`;
-    info.element.appendChild(fieldsWrapper.element);
-    info.element.appendChild(photoContainer.element);
+    
+    info.element.appendChild(fieldsWrapper.element);    
+    info.element.appendChild(userPhoto.element);
     fieldsWrapper.element.appendChild(firstName.element);
     fieldsWrapper.element.appendChild(lastName.element);
     fieldsWrapper.element.appendChild(email.element);
@@ -58,7 +54,7 @@ export class Registration extends BaseComponent {
     form.element.addEventListener('submit', (e) => {
       e.preventDefault();
       validate();
-    });
+    });    
   }
 
   showRegistrationForm() {

@@ -23,9 +23,7 @@ export class Header extends BaseComponent {
       href: 'settings',
       text: 'Game Settings',
     },
-  ];
-
-  // private btnStart = document.querySelector('.btn-start');
+  ];  
 
   constructor() {
     super('header', ['header']);
@@ -44,16 +42,18 @@ export class Header extends BaseComponent {
     btnReg.element.innerHTML = 'register new player';
     btnStart.element.innerHTML = 'start game';
     btnStop.element.innerHTML = 'stop game';
-    btnStart.element.classList.add('btn-start')
-    btnStop.element.classList.add('btn-stop')
+    btnStart.element.classList.add('btn-start');
+    btnStop.element.classList.add('btn-stop');   
 
     this.navItemProps.forEach((item) => {
+      
       const navItem = new NavItem(item);
       if (this.navItemProps.indexOf(item) === 0) {
         navItem.element.classList.add('nav__item_active');
       }
       navList.element.appendChild(navItem.element);
-    });
+    });    
+
     btnReg.element.classList.add('btn-reg');
     nav.element.appendChild(navList.element);
     logo.element.innerHTML = `

@@ -32,9 +32,9 @@ export class Select extends BaseComponent {
       },
       {
         attrubutes: [
-          { value: 'insects' },
+          { value: 'food' },
         ],
-        text: 'insects',
+        text: 'food',
       },
     ],
     difficulty: [
@@ -67,13 +67,15 @@ export class Select extends BaseComponent {
   render(dropdown: ISettings) {
     const header = new BaseComponent('h2', ['dropdown-header']);
     const select = new BaseComponent('select', ['select']);
+    
     header.element.innerHTML = `${dropdown.header}`;
     select.element.setAttribute('id', `${dropdown.id}`);
+      
     this.optionProps[dropdown.id].forEach((item: IOptionInnerProps) => {
       const option = new Option(item);
       select.element.appendChild(option.element);
     });
     this.element.appendChild(header.element);
-    this.element.appendChild(select.element);
-  }
+    this.element.appendChild(select.element);    
+  }  
 }

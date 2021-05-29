@@ -69,10 +69,6 @@
   margin-bottom: 0;
 }
 
-input[type="file"] {
-  display: none;
-}
-
 .field-container {
   position: relative;
   width: 100%;
@@ -126,40 +122,6 @@ small {
   small {
     visibility: visible;
   }
-}
-
-.custom-photo-upload {
-  position: relative;
-  display: block;
-  width: 180px;
-  height: 180px;
-  cursor: pointer;
-  border-radius: 50%;
-
-  &::before {
-    position: absolute;
-    display: inline-block;
-    content: '';
-    width: 45px;
-    height: 45px;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    background: center / contain no-repeat url('../../assets/icons/plus.svg');
-    opacity: 0;
-    transition: all .2s;
-  }
-}
-
-.custom-photo-upload:hover:before {
-  opacity: 1;
-}
-
-.image-upload {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
 }
 
 .btn-container {
