@@ -7,12 +7,15 @@ export class FormField extends BaseComponent {
 
   inputType: string;
 
+  inputId: string;
+
   label: string;
 
-  constructor(inputType: string, inputClass: string, label: string) {
+  constructor(inputType: string, inputId: string, inputClass: string, label: string) {
     super('div', ['field-container']);
     this.inputClass = inputClass;
     this.inputType = inputType;
+    this.inputId = inputId;
     this.label = label;
     this.render();
   }
@@ -23,6 +26,7 @@ export class FormField extends BaseComponent {
     const small = new BaseComponent('small', []);
 
     input.element.setAttribute('type', `${this.inputType}`);
+    input.element.setAttribute('id', `${this.inputId}`)
     input.element.setAttribute('placeholder', ' ');
     input.element.addEventListener('input', () => validate());
     label.element.innerHTML = `${this.label}`;

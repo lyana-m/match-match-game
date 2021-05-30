@@ -4,7 +4,8 @@ import './header.scss';
 import { BaseComponent } from '../baseComponent';
 import { NavItem } from './nav-item/nav-item';
 import { Button } from './button/button';
-import { Game } from '../../classes/game';
+// import { Game } from '../../classes/game';
+// import { imageSrc } from '../../classes/app';
 
 export class Header extends BaseComponent {
   navItemProps = [
@@ -39,11 +40,13 @@ export class Header extends BaseComponent {
     const btnReg = new Button();
     const btnStart = new Button();
     const btnStop = new Button();
+    // const userPhoto = new BaseComponent('div', ['registered-user-photo'])
     btnReg.element.innerHTML = 'register new player';
     btnStart.element.innerHTML = 'start game';
     btnStop.element.innerHTML = 'stop game';
     btnStart.element.classList.add('btn-start');
-    btnStop.element.classList.add('btn-stop');   
+    btnStop.element.classList.add('btn-stop');
+     
 
     this.navItemProps.forEach((item) => {
       
@@ -64,7 +67,15 @@ export class Header extends BaseComponent {
     headerInner.element.appendChild(btnStop.element);
     headerInner.element.appendChild(btnStart.element);
     headerInner.element.appendChild(btnReg.element);
+    // headerInner.element.appendChild(userPhoto.element);
     wrapper.element.appendChild(headerInner.element);
     this.element.appendChild(wrapper.element);    
   }
+
+  // addUserPhoto() {
+  //   const headerInner = document.querySelector('.header__inner');
+  //   const userPhoto = new BaseComponent('div', ['registered-user-photo'])
+  //   userPhoto.element.innerHTML = `<img src=${imageSrc}>`;
+  //   headerInner?.appendChild(userPhoto.element);
+  // }
 }

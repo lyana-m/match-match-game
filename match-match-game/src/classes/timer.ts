@@ -18,13 +18,31 @@ export class Timer extends BaseComponent {
       ${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
       this.element.innerHTML = strTimer;
       timerUnit++;
-    }, 1000);
+    }, 1000);  
   }
 
   stopTimer() {    
+    // if (this.timer) {
+    //   clearInterval(this.timer);
+    //   this.element.innerHTML = '00:00';
+    // }
+    this.clearInterval();
+    this.clearHTMLTimer();
+  }
+
+  clearInterval() {
     if (this.timer) {
       clearInterval(this.timer);
+    }
+  }
+
+  clearHTMLTimer() {
+    if (this.timer) {
       this.element.innerHTML = '00:00';
     }
+  }
+
+  getTime() {
+    return document.querySelector('.timer')?.textContent!;
   }
 }

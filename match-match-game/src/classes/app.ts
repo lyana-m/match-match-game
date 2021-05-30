@@ -6,6 +6,9 @@ import { BaseComponent } from '../shared/baseComponent';
 import { Game } from './game';
 import { Registration } from '../shared/registration/registration';
 import { validate } from '../helpers/validator';
+import { bdInit } from '../helpers/bd';
+
+export let imageSrc: string;
 
 export class App {
   private readonly rootElement: HTMLElement;
@@ -30,7 +33,8 @@ export class App {
     this.rootElement.appendChild(this.registration.element);       
   }
 
-  start() {    
+  start() {
+    bdInit(); 
     const btnReg = document.querySelector('.btn-reg');
     btnReg?.addEventListener('click', () => validate());
     btnReg?.addEventListener('click', () => this.registration.showRegistrationForm());
@@ -54,9 +58,10 @@ export class App {
       const file = inputFile.files![0];
       const reader = new FileReader();
       reader.onload = (event: Event) => {
-        const image = new Image();        
-        image.src = (<FileReader>event.target).result as string;
-        console.log(image.src);
+        const image = new Image(); 
+        imageSrc = (<FileReader>event.target).result as string;       
+        image.src = imageSrc;
+        // console.log(image.src);
         image.onload = () => {
           canvas.width = image.width;
           canvas.height = image.height;

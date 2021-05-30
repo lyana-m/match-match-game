@@ -6,6 +6,7 @@ import { Card } from './card';
 import { Field } from './field';
 import { Timer } from './timer';
 import { cardTypeValue, difficultyValue } from '../pages/settings/settings';
+import { getIdFromLS, saveScore, getScoreTable } from '../helpers/bd';
 
 interface IConfig {
   difficulty: string,
@@ -47,6 +48,8 @@ export class Game extends BaseComponent {
 
   private pairs = 0;
 
+  // private score = 0;
+
   private rootElement = document.querySelector('body');
 
   private readonly winModal: WinModal;
@@ -55,14 +58,14 @@ export class Game extends BaseComponent {
     super();
     this.field = new Field();
     this.timer = new Timer();
-    this.winModal = new WinModal();
+    this.winModal = new WinModal(this.timer);
     this.element.appendChild(this.timer.element);
     this.element.appendChild(this.field.element);
     this.rootElement?.appendChild(this.winModal.element);
   }
 
   async startGame() {
-    const root: HTMLElement | null = document.querySelector(':root');    
+    const root: HTMLElement | null = document.querySelector(':root');
     if (+difficultyValue === 36) {
       root!.style.setProperty('--card-size', '90px');
     }
@@ -140,7 +143,20 @@ export class Game extends BaseComponent {
   }
 
   successFinishGame() {
-    this.timer.stopTimer();
+    // this.timer.stopTimer();
     this.winModal.showModal();
+    const score = this.calculateScore();
+    const id = getIdFromLS();
+    if (id) {
+      saveScore(id, score);  
+    }
+    // getScoreTable();
+  }
+
+  calculateScore() {
+    const arrTime = this.timer.getTime().split(':');
+    const seconds = +arrTime[0] * 60 + +arrTime[1];
+    const userScore = (this.rightPairs - this.wrongPairs) * 100 - seconds * 10;
+    return userScore < 0 ? 0 : userScore;    
   }
 }

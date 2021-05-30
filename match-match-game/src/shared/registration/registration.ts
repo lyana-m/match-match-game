@@ -4,6 +4,8 @@ import { BaseComponent } from '../baseComponent';
 import { Button } from '../header/button/button';
 import { FormField } from './form-field/form-fiels';
 import { UserPhoto } from './user-photo/user-photo';
+import { addUser } from '../../helpers/bd';
+import { imageSrc } from '../../classes/app';
 
 export class Registration extends BaseComponent {
   constructor() {
@@ -19,9 +21,9 @@ export class Registration extends BaseComponent {
     const formHeader = new BaseComponent('h1', ['form-header']);
     const info = new BaseComponent('div', ['info']);
     const fieldsWrapper = new BaseComponent('div', []);
-    const firstName = new FormField('text', 'first-name', 'First name');
-    const lastName = new FormField('text', 'last-name', 'Last name');
-    const email = new FormField('email', 'e-mail', 'E-mail');    
+    const firstName = new FormField('text', 'first-name', 'first-name', 'First name');
+    const lastName = new FormField('text', 'last-name', 'last-name', 'Last name');
+    const email = new FormField('email', 'email', 'e-mail', 'E-mail');    
     const userPhoto = new UserPhoto();
     const btnSubmit = new Button();
     const btnReset = new Button();
@@ -49,11 +51,14 @@ export class Registration extends BaseComponent {
     this.element.appendChild(form.element);
     this.element.appendChild(overlay.element);
 
+    form.element.addEventListener('submit', () => addUser());
+    form.element.addEventListener('submit', () => this.addUserPhoto());
     btnReset.element.addEventListener('click', () => clearForm());
     overlay.element.addEventListener('click', () => this.hideRegistrationForm());
     form.element.addEventListener('submit', (e) => {
       e.preventDefault();
       validate();
+      this.hideRegistrationForm();
     });    
   }
 
@@ -63,5 +68,13 @@ export class Registration extends BaseComponent {
 
   hideRegistrationForm() {
     this.element.style.display = 'none';
+    clearForm();
+  }
+
+  addUserPhoto() {
+    const headerInner = document.querySelector('.header__inner');
+    const userPhoto = new BaseComponent('div', ['registered-user-photo'])
+    userPhoto.element.innerHTML = `<img src=${imageSrc}>`;
+    headerInner?.appendChild(userPhoto.element);
   }
 }
