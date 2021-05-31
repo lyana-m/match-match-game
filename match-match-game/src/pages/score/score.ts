@@ -15,13 +15,13 @@ export class Score extends BaseComponent {
     const wrapper = new BaseComponent('div', ['table-wrapper']);
     const table = new BaseComponent('table', ['table']);
     const tbody = new BaseComponent('tbody');
-    const entry = new Entry('Nicci Troiani', 'nicci@gmail.com', 300);
+    // const entry = new Entry('Nicci Troiani', 'nicci@gmail.com', 300);
     header.element.innerHTML = 'Best players';
     table.element.innerHTML = `
     <col style="width: 10%">
     <col style="width: 60%">
     <col style="width: 30%">`;
-    tbody.element.appendChild(entry.element);
+    // tbody.element.appendChild(entry.element);
     if (users.length > 0) {
       users.forEach(user => {
         const entry = new Entry(`${user.firstName} ${user.lastName}`, `${user.email}`, user.score);
@@ -54,7 +54,10 @@ export class Score extends BaseComponent {
         let userReq = userStore.getAll();
 
         userReq.onsuccess = (event: Event) => {
-          let users: IUser[] = (<IDBRequest>event.target).result.filter((item: IUser) => item.score).sort((a: IUser, b: IUser) => a.score! < b.score! ? 1 : -1);
+          let users: IUser[] = (<IDBRequest>event.target).result
+          .filter((item: IUser) => item.score !== undefined )
+          .sort((a: IUser, b: IUser) => a.score! < b.score! ? 1 : -1)
+          .slice(0, 10);
           resolve(users);
         }
         userReq.onerror = () => {
