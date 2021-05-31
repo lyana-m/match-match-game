@@ -14,16 +14,19 @@ export class Header extends BaseComponent {
       src: './assets/icons/about.svg',
       href: '',
       text: 'About Game',
+      id: '/',
     },
     {
       src: './assets/icons/score.svg',
       href: 'score',
       text: 'Best Score',
+      id: '/score',
     },
     {
       src: './assets/icons/settings.svg',
       href: 'settings',
       text: 'Game Settings',
+      id: '/settings',
     },
   ];
 
@@ -56,9 +59,9 @@ export class Header extends BaseComponent {
     this.navItemProps.forEach((item) => {
 
       const navItem = new NavItem(item);
-      if (this.navItemProps.indexOf(item) === 0) {
-        navItem.element.classList.add('nav__item_active');
-      }
+      // if (this.navItemProps.indexOf(item) === 0) {
+      //   navItem.element.classList.add('nav__item_active');
+      // }
       // if (this.navItemProps.indexOf(item) === 1) {
       //   navItem.element.addEventListener('click', () => getScoreTable());
       // }

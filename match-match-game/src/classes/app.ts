@@ -35,6 +35,7 @@ export class App {
 
   start() {
     bdInit(); 
+    
     const btnReg = document.querySelector('.btn-reg');
     btnReg?.addEventListener('click', () => validate());
     btnReg?.addEventListener('click', () => this.registration.showRegistrationForm());
@@ -48,7 +49,10 @@ export class App {
     const btnStop = document.querySelector('.btn-stop');
     btnStop?.addEventListener('click', () => this.game.stopGame());
 
-    const links = document.querySelectorAll('.nav__link');
+    const links = document.querySelectorAll('.nav__link');    
+    const activeLinkArr = Array.from(links).filter(link => link.getAttribute('id') === `${window.location.pathname}`);    
+    activeLinkArr[0].closest('.nav__item')!.classList.add('nav__item_active'); 
+
     links.forEach(link => link.addEventListener('click', () => this.game.timer.stopTimer()));
     
     const inputFile: HTMLInputElement = document.querySelector('input[type="file"]') as HTMLInputElement;

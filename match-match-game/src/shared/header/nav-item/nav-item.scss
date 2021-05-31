@@ -9,9 +9,12 @@
   transition: all 0.2s;
   cursor: pointer;
 
-  &_active,
-  &:hover {
+  &_active {
     background-color: #788aa3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+  &:not(.nav__item_active):hover {
+    background-color: #b2c9ab;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   }
 }

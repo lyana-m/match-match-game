@@ -15,10 +15,12 @@ export class NavItem extends BaseComponent {
     const link = new BaseComponent('a', ['nav__link']);
     img.element.setAttribute('src', item.src);
     link.element.innerHTML = item.text;
+    link.element.setAttribute('id', `${item.id}`);
     this.element.appendChild(img.element);
     this.element.appendChild(link.element);
     link.element.addEventListener('click', () => router.loadRoute(item.href));
     link.element.addEventListener('click', (event: MouseEvent) => this.makeLinkActive(event));
+    this.element.addEventListener('click', () => link.element.click());
   }
 
   makeLinkActive(event: MouseEvent) {
