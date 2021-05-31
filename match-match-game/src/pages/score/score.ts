@@ -1,53 +1,48 @@
 import './score.scss';
 import { BaseComponent } from "../../shared/baseComponent";
 import { Entry } from './entry/entry';
-import { getScoreTable, IUser } from '../../helpers/bd';
+import { IUser } from '../../helpers/bd';
 
 export class Score extends BaseComponent {
 
-  constructor() {
+  constructor(users: IUser[]) {
     super('div', ['score']);
-    this.render();
-    console.log(this.element.outerHTML);
+    this.render(users);
   }
 
-  async render() {
+  render(users: IUser[]) {
     const header = new BaseComponent('h2', ['score-header']);
     const wrapper = new BaseComponent('div', ['table-wrapper']);
     const table = new BaseComponent('table', ['table']);
     const tbody = new BaseComponent('tbody');
     const entry = new Entry('Nicci Troiani', 'nicci@gmail.com', 300);
-    console.log('render');
     header.element.innerHTML = 'Best players';
     table.element.innerHTML = `
     <col style="width: 10%">
     <col style="width: 60%">
     <col style="width: 30%">`;
     tbody.element.appendChild(entry.element);
-    table.element.appendChild(tbody.element);
-    wrapper.element.appendChild(table.element);
-    this.element.appendChild(header.element);
-    this.element.appendChild(wrapper.element);
-    const users = (await this.renderScoreTable()).filter((item: IUser) => item.score).sort((a: IUser, b: IUser) => a.score! < b.score! ? 1 : -1);
     if (users.length > 0) {
       users.forEach(user => {
         const entry = new Entry(`${user.firstName} ${user.lastName}`, `${user.email}`, user.score);
         tbody.element.appendChild(entry.element);
       });
     }
-    // console.log(users);
-    // console.log(this.element.outerHTML);
+    table.element.appendChild(tbody.element);
+    wrapper.element.appendChild(table.element);
+    this.element.appendChild(header.element);
+    this.element.appendChild(wrapper.element);
   }
 
-  renderScoreTable() {
+  static renderScoreTable = async (): Promise<IUser[]> => {
+
     return new Promise<IUser[]>((resolve) => {
       const dbReq = indexedDB.open('userDB', 1);
       let db: IDBDatabase;
-      console.log(111);
 
       (<IDBOpenDBRequest>dbReq).onupgradeneeded = (event) => {
         db = (<IDBOpenDBRequest>event.target).result;
-        const users = db.createObjectStore('users', { keyPath: 'id' });
+        const users = db.createObjectStore('users', {keyPath: 'id'});
       }
 
       (<IDBOpenDBRequest>dbReq).onsuccess = (event) => {
@@ -59,7 +54,7 @@ export class Score extends BaseComponent {
         let userReq = userStore.getAll();
 
         userReq.onsuccess = (event: Event) => {
-          let users: IUser[] = (<IDBRequest>event.target).result;
+          let users: IUser[] = (<IDBRequest>event.target).result.filter((item: IUser) => item.score).sort((a: IUser, b: IUser) => a.score! < b.score! ? 1 : -1);
           resolve(users);
         }
         userReq.onerror = () => {
@@ -69,7 +64,7 @@ export class Score extends BaseComponent {
       (<IDBOpenDBRequest>dbReq).onerror = (event) => {
         alert('error opening database');
       }
-    })
-  }
+    });
+  };
 }
 

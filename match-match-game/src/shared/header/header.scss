@@ -44,7 +44,21 @@
   height: 100%;
 }
 
+.btn-photo-container {
+  display: flex;
+  align-items: center;
+}
+
+.btn-start {
+  display: none;
+}
+
+.btn-stop {
+  display: none;
+}
+
 .registered-user-photo {
+  margin-left: 20px;
   height: 40px;
   width: 40px;
   border-radius: 50%;

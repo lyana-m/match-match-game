@@ -1,7 +1,8 @@
 /* eslint-disable */
 
 interface IRoute {
-  [key: string]: string;
+  path: string;
+  template: string | Promise<string>
 }
 
 export class Router {
@@ -23,7 +24,11 @@ export class Router {
     if (typeof matchedRoute === 'undefined') {
       throw new Error('error');
     }
-    routerOutletElement.innerHTML = matchedRoute.template;
+    if (matchedRoute.template instanceof Promise) {
+      matchedRoute.template.then(value => routerOutletElement.innerHTML = value)
+    } else {
+      routerOutletElement.innerHTML = matchedRoute.template;
+    }
   }
 
   matchUrlToRoute(urlSegments: string) {

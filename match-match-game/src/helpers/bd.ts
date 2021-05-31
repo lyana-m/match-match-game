@@ -2,6 +2,7 @@ import { Entry } from "../pages/score/entry/entry";
 import { imageSrc } from '../classes/app'
 import { Score } from "../pages/score/score";
 import { BaseComponent } from "../shared/baseComponent";
+import { routes } from '../router/routes';
 
 export interface IUser {
   // [key: string]: string;
@@ -60,29 +61,16 @@ export function addUser() {
   tx.oncomplete = () => {
     console.log('user added');
     // При завершении транзакции по добавлению пользователя вызовем функцию по отображению списка пользователей
-    // getScoreTable();  
+    // getScoreTable();
   }
   tx.onerror = () => {
     saveIdInLS(hash);
   }
 }
 
-export function getScoreTable(db: IDBDatabase, tbody: BaseComponent) {
-  let tx = db.transaction('users');
-  let userStore = tx.objectStore('users');
 
-  // Запрашиваем всех пользователей
-  let userReq = userStore.getAll();
 
-  userReq.onsuccess = (event: Event) => {
-    let users: IUser[] = (<IDBRequest>event.target).result;
-  }
-  userReq.onerror = () => {
-    console.log('error getting all users');
-  }
-}
-
-// export function getScoreTable(db: IDBDatabase, tbody: BaseComponent) {
+// export function getScoreTable() {
 //   let tx = db.transaction('users');
 //   let userStore = tx.objectStore('users');
 
@@ -91,24 +79,20 @@ export function getScoreTable(db: IDBDatabase, tbody: BaseComponent) {
 
 //   userReq.onsuccess = (event: Event) => {
 //     let users: IUser[] = (<IDBRequest>event.target).result.filter((item: IUser) => item.score).sort((a: IUser, b: IUser) => a.score! < b.score! ? 1 : -1);
-//     //.sort((a: IUser, b: IUser) => a.score! > b.score! ? 1 : -1)    
-//     // const table = document.querySelector('tbody');
-
+//     const tbody = document.querySelector('tbody');
+//     const table = document.querySelector('table');
+    
 //     if (users.length > 0) {
 //       users.forEach(user => {
 //         const entry = new Entry(`${user.firstName} ${user.lastName}`, `${user.email}`, user.score);
-//         tbody?.element.appendChild(entry.element);
+//         tbody?.appendChild(entry.element);
 //       });
 //     }
-//     console.log(tbody?.element);
-//   }  
+//     table?.appendChild(tbody!);    
+//   }
 //   userReq.onerror = () => {
 //     console.log('error getting all users');
 //   }
-// }
-
-// function hashCode(string: string){
-//   return string.split('').reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              
 // }
 
 function hashCode(string: string) {

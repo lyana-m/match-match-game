@@ -17,7 +17,7 @@ export class NavItem extends BaseComponent {
     link.element.innerHTML = item.text;
     this.element.appendChild(img.element);
     this.element.appendChild(link.element);
-    link.element.addEventListener('click', () => router.loadRoute(item.href))
+    link.element.addEventListener('click', () => router.loadRoute(item.href));
     link.element.addEventListener('click', (event: MouseEvent) => this.makeLinkActive(event));
   }
 

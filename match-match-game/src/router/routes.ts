@@ -9,10 +9,16 @@ export const routes = [
   },
   {
     path: '/score',
-    template: new Score().element.outerHTML
+    template: getScoreTemplate()
   },
   {
     path: '/settings',
     template: new Settings().element.outerHTML
   }
 ];
+
+export async function getScoreTemplate() {
+  let score = new Score(await Score.renderScoreTable());
+  return score.element.outerHTML;
+}
+

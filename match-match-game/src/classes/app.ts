@@ -59,7 +59,8 @@ export class App {
       const reader = new FileReader();
       reader.onload = (event: Event) => {
         const image = new Image(); 
-        imageSrc = (<FileReader>event.target).result as string;       
+        imageSrc = (<FileReader>event.target).result as string;
+        localStorage.setItem('image', `${imageSrc}`)     
         image.src = imageSrc;
         // console.log(image.src);
         image.onload = () => {
@@ -69,6 +70,6 @@ export class App {
         }
       }      
       reader.readAsDataURL(file);
-    })
+    })  
   }  
 }

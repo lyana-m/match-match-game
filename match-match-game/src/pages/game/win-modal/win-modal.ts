@@ -4,9 +4,9 @@ import './win-modal.scss';
 import { BaseComponent } from '../../../shared/baseComponent';
 import { Button } from '../../../shared/header/button/button';
 import { Timer } from '../../../classes/timer';
+import { routes, getScoreTemplate } from '../../../router/routes';
 
 export class WinModal extends BaseComponent {
-  // time = '';
   timer: Timer;
 
   constructor(timer: Timer) {
@@ -25,7 +25,7 @@ export class WinModal extends BaseComponent {
     btn.element.classList.add('btn-ok');
     btn.element.innerHTML = 'ok';
     btn.element.addEventListener('click', () => this.closeModal());
-    btn.element.addEventListener('click', () => scoreLink.click());
+    btn.element.addEventListener('click', () => this.updateScoreLink());
     winCongrats.element.appendChild(congrats.element);
     winCongrats.element.appendChild(btn.element);
     this.element.appendChild(winCongrats.element);
@@ -34,8 +34,6 @@ export class WinModal extends BaseComponent {
 
   showModal() {    
     this.element.style.display = 'flex';
-    // const timer: string = document.querySelector('.timer')?.textContent!;
-    // this.time = timer;
     this.timer.clearInterval();
     const time = this.timer.getTime();
     document.querySelector('.congrats')!.innerHTML = `Congratulations! You successfully found all matches on ${time} minutes`;
@@ -43,5 +41,11 @@ export class WinModal extends BaseComponent {
 
   closeModal() {
     this.element.style.display = 'none';
+  }
+
+  async updateScoreLink() {
+    routes[1].template = await getScoreTemplate();
+    const scoreLink: HTMLElement = document.querySelectorAll('.nav__link')[1] as HTMLElement;
+    scoreLink.click()
   }
 }

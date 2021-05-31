@@ -52,6 +52,12 @@ export class Registration extends BaseComponent {
     this.element.appendChild(overlay.element);
 
     form.element.addEventListener('submit', () => addUser());
+    form.element.addEventListener('submit', () => {
+      const btnReg = document.querySelector('.btn-reg');
+      const btnStart = document.querySelector('.btn-start');
+      (<HTMLElement>btnReg).style.display = 'none';
+      (<HTMLElement>btnStart).style.display = 'inline-block';
+    });
     form.element.addEventListener('submit', () => this.addUserPhoto());
     btnReset.element.addEventListener('click', () => clearForm());
     overlay.element.addEventListener('click', () => this.hideRegistrationForm());
@@ -71,10 +77,11 @@ export class Registration extends BaseComponent {
     clearForm();
   }
 
-  addUserPhoto() {
-    const headerInner = document.querySelector('.header__inner');
-    const userPhoto = new BaseComponent('div', ['registered-user-photo'])
-    userPhoto.element.innerHTML = `<img src=${imageSrc}>`;
-    headerInner?.appendChild(userPhoto.element);
+  async addUserPhoto() {
+    const btnContainer = document.querySelector('.btn-photo-container');
+    const userPhoto = new BaseComponent('div', ['registered-user-photo']);
+    const image = await localStorage.getItem('image');
+    userPhoto.element.innerHTML = `<img src=${image}>`;
+    btnContainer?.appendChild(userPhoto.element);
   }
 }

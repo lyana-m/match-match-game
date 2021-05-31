@@ -6,7 +6,7 @@ import { Card } from './card';
 import { Field } from './field';
 import { Timer } from './timer';
 import { cardTypeValue, difficultyValue } from '../pages/settings/settings';
-import { getIdFromLS, saveScore, getScoreTable } from '../helpers/bd';
+import { getIdFromLS, saveScore } from '../helpers/bd';
 
 interface IConfig {
   difficulty: string,
@@ -48,8 +48,6 @@ export class Game extends BaseComponent {
 
   private pairs = 0;
 
-  // private score = 0;
-
   private rootElement = document.querySelector('body');
 
   private readonly winModal: WinModal;
@@ -65,6 +63,10 @@ export class Game extends BaseComponent {
   }
 
   async startGame() {
+    this.wrongPairs = 0;
+    this.rightPairs = 0;
+    this.pairs = 0;
+
     const root: HTMLElement | null = document.querySelector(':root');
     if (+difficultyValue === 36) {
       root!.style.setProperty('--card-size', '90px');
@@ -72,7 +74,6 @@ export class Game extends BaseComponent {
     if (+difficultyValue === 16) {
       root!.style.setProperty('--card-size', '135px');
     }
-
 
     const res = await fetch('../public/images.json');
     const categories: CardCategory = await res.json();
