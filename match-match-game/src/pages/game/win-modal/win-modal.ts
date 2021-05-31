@@ -3,13 +3,16 @@ import { BaseComponent } from '../../../shared/baseComponent';
 import { Button } from '../../../shared/header/button/button';
 import { Timer } from '../../../classes/timer';
 import { routes, getScoreTemplate } from '../../../router/routes';
+import { Field } from '../../../classes/field';
 
 export class WinModal extends BaseComponent {
   timer: Timer;
+  field: Field;
 
-  constructor(timer: Timer) {
+  constructor(timer: Timer, field: Field) {
     super('div', ['win-modal']);
     this.timer = timer;
+    this.field = field;
     this.render();
   }
 
@@ -39,6 +42,7 @@ export class WinModal extends BaseComponent {
 
   closeModal() {
     this.element.style.display = 'none';
+    this.field.clear();
   }
 
   stopBtnChange() {
@@ -48,7 +52,7 @@ export class WinModal extends BaseComponent {
     (<HTMLElement>btnStop).style.display = 'none';
     (<HTMLElement>btnReg).style.display = 'inline-block';
     localStorage.removeItem('image');
-    (<HTMLElement>userPhoto).remove();  
+    (<HTMLElement>userPhoto).remove();
   }
 
   async updateScoreLink() {

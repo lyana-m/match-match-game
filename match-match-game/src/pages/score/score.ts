@@ -13,7 +13,7 @@ export class Score extends BaseComponent {
     const header = new BaseComponent('h2', ['score-header']);
     const wrapper = new BaseComponent('div', ['table-wrapper']);
     const table = new BaseComponent('table', ['table']);
-    const tbody = new BaseComponent('tbody');    
+    const tbody = new BaseComponent('tbody');
     header.element.innerHTML = 'Best players';
     table.element.innerHTML = `
     <col style="width: 10%">
@@ -45,7 +45,7 @@ export class Score extends BaseComponent {
     (<IDBOpenDBRequest>dbReq).onsuccess = (event) => {
       db = (<IDBOpenDBRequest>event.target).result;
       const tx = db.transaction('users');
-      const userStore = tx.objectStore('users');      
+      const userStore = tx.objectStore('users');
       const userReq = userStore.getAll();
 
       userReq.onsuccess = (event: Event) => {
@@ -59,7 +59,7 @@ export class Score extends BaseComponent {
         console.log('error getting all users');
       };
     };
-    
+
     (<IDBOpenDBRequest>dbReq).onerror = (event) => {
       alert('error opening database');
     };

@@ -35,8 +35,8 @@ export class Settings extends BaseComponent {
         cardTypeValue = (<HTMLSelectElement>e.target).value;
       }
       if (e.target && (<HTMLElement>e.target).id === 'difficulty') {
-        difficultyValue = (<HTMLSelectElement>e.target).value;        
+        difficultyValue = (<HTMLSelectElement>e.target).value;
       }
     });
-  }  
+  }
 }

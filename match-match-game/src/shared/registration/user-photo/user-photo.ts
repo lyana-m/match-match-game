@@ -4,7 +4,7 @@ import { BaseComponent } from '../../baseComponent';
 export class UserPhoto extends BaseComponent {
   constructor() {
     super('div', ['photo-container']);
-    this.render();    
+    this.render();
   }
 
   render() {
@@ -17,6 +17,6 @@ export class UserPhoto extends BaseComponent {
     label.element.appendChild(image.element);
     label.element.appendChild(canvas.element);
     label.element.appendChild(input.element);
-    this.element.appendChild(label.element);    
-  }  
+    this.element.appendChild(label.element);
+  }
 }

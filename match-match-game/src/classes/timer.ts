@@ -21,7 +21,7 @@ export class Timer extends BaseComponent {
     }, 1000);
   }
 
-  stopTimer() {    
+  stopTimer() {
     this.clearInterval();
     this.clearHTMLTimer();
   }

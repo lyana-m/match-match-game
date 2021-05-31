@@ -2,7 +2,6 @@ import './entry.scss';
 import { BaseComponent } from '../../../shared/baseComponent';
 
 export class Entry extends BaseComponent {
-
   userName: string;
 
   email: string;
@@ -34,7 +33,7 @@ export class Entry extends BaseComponent {
     } else {
       img.element.setAttribute('src', './assets/icons/user-no-photo.svg');
     }
-    
+
     userName.element.innerHTML = `${this.userName}</br><span class="user-email">${this.email}</span>`;
     userScore.element.innerHTML = `Score: ${this.score}`;
     userEmail.element.innerHTML = `${this.email}`;

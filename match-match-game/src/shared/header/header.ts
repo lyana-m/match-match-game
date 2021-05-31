@@ -50,7 +50,7 @@ export class Header extends BaseComponent {
     btnStop.element.addEventListener('click', () => this.btnChange(btnStop.element, btnReg.element));
 
     this.navItemProps.forEach((item) => {
-      const navItem = new NavItem(item);      
+      const navItem = new NavItem(item);
       navList.element.appendChild(navItem.element);
     });
 

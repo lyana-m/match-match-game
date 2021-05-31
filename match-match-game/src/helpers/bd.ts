@@ -1,6 +1,6 @@
 import { imageSrc } from '../classes/app';
 
-export interface IUser {  
+export interface IUser {
   firstName: string,
   lastName: string,
   email: string,
@@ -20,7 +20,7 @@ export function bdInit() {
   };
 
   (<IDBOpenDBRequest>dbReq).onsuccess = (event) => {
-    db = (<IDBOpenDBRequest>event.target).result;    
+    db = (<IDBOpenDBRequest>event.target).result;
   };
   (<IDBOpenDBRequest>dbReq).onerror = () => {
     alert('error opening database');
@@ -67,7 +67,7 @@ export function addUser() {
   };
   userStore.add(user);
   tx.oncomplete = () => {
-    console.log('user added');    
+    console.log('user added');
   };
   tx.onerror = () => {
     saveIdInLS(hash);
@@ -89,7 +89,7 @@ export function updateUser(user: IUser, score: number) {
     console.log('user updated');
   };
   tx.oncomplete = () => {
-    console.log('user added');  
+    console.log('user added');
   };
 }
 

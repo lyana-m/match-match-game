@@ -2,7 +2,6 @@ import { BaseComponent } from '../shared/baseComponent';
 import '../pages/game/game.scss';
 
 export class Card extends BaseComponent {
-  
   constructor(readonly images: string) {
     super('div', ['card']);
 

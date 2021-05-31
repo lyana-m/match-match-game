@@ -9,7 +9,6 @@ import { cardTypeValue, difficultyValue } from '../pages/settings/settings';
 import { getIdFromLS, saveScore } from '../helpers/bd';
 
 export class Game extends BaseComponent {
- 
   private readonly field: Field;
 
   timer: Timer;
@@ -32,7 +31,7 @@ export class Game extends BaseComponent {
     super();
     this.field = new Field();
     this.timer = new Timer();
-    this.winModal = new WinModal(this.timer);
+    this.winModal = new WinModal(this.timer, this.field);
     this.element.appendChild(this.timer.element);
     this.element.appendChild(this.field.element);
     this.rootElement?.appendChild(this.winModal.element);
@@ -53,7 +52,7 @@ export class Game extends BaseComponent {
 
     const res = await fetch('../public/images.json');
     const categories: CardCategory = await res.json();
-    const currentCategory = categories[cardTypeValue];    
+    const currentCategory = categories[cardTypeValue];
     const images = Array.from({ length: +difficultyValue / 2 }, (_, index) => `${cardTypeValue}/${currentCategory[index]}`);
 
     setTimeout(() => this.timer.startTimer(), 3000);
@@ -103,7 +102,7 @@ export class Game extends BaseComponent {
 
     this.activeCard = undefined;
     this.isAnimate = false;
-    
+
     if (this.rightPairs === this.pairs) {
       this.successFinishGame();
     }
