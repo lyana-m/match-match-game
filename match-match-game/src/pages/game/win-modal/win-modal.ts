@@ -18,7 +18,6 @@ export class WinModal extends BaseComponent {
     const overlay = new BaseComponent('div', ['win-overlay']);
     const congrats = new BaseComponent('h2', ['congrats']);
     const btn = new Button();
-    const scoreLink: HTMLElement = document.querySelectorAll('.nav__link')[1] as HTMLElement;
     congrats.element.innerHTML = '';
     btn.element.classList.add('btn-ok');
     btn.element.innerHTML = 'ok';
@@ -49,8 +48,7 @@ export class WinModal extends BaseComponent {
     (<HTMLElement>btnStop).style.display = 'none';
     (<HTMLElement>btnReg).style.display = 'inline-block';
     localStorage.removeItem('image');
-    (<HTMLElement>userPhoto).remove();
-    // (<HTMLElement>userPhoto).style.display = 'none';
+    (<HTMLElement>userPhoto).remove();  
   }
 
   async updateScoreLink() {

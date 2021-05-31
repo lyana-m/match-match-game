@@ -24,7 +24,6 @@ export class FormField extends BaseComponent {
     const input = new BaseComponent('input', [`${this.inputClass}`]);
     const label = new BaseComponent('label', []);
     const small = new BaseComponent('small', []);
-
     input.element.setAttribute('type', `${this.inputType}`);
     input.element.setAttribute('id', `${this.inputId}`);
     input.element.setAttribute('placeholder', ' ');

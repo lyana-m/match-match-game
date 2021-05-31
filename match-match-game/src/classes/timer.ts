@@ -21,11 +21,7 @@ export class Timer extends BaseComponent {
     }, 1000);
   }
 
-  stopTimer() {
-    // if (this.timer) {
-    //   clearInterval(this.timer);
-    //   this.element.innerHTML = '00:00';
-    // }
+  stopTimer() {    
     this.clearInterval();
     this.clearHTMLTimer();
   }

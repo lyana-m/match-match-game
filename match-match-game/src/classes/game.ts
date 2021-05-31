@@ -8,31 +8,8 @@ import { Timer } from './timer';
 import { cardTypeValue, difficultyValue } from '../pages/settings/settings';
 import { getIdFromLS, saveScore } from '../helpers/bd';
 
-interface IConfig {
-  difficulty: string,
-  cardType: string
-}
-
-interface IState {
-  config: IConfig;
-}
-
 export class Game extends BaseComponent {
-  // state: IState = {
-  // //   user: {
-  // //     id: 1,
-  // //     firstName: 'User1',
-  // //     lastName: 'User2',
-  // //     email: 'user1@email.com'
-  // //   },
-  //   config: {
-  //     difficulty: difficultyValue,
-  //     cardType: cardTypeValue
-  //   },
-  // //   game: {
-  // //     timer: 456365
-  // //   }
-  // }
+ 
   private readonly field: Field;
 
   timer: Timer;
@@ -76,8 +53,7 @@ export class Game extends BaseComponent {
 
     const res = await fetch('../public/images.json');
     const categories: CardCategory = await res.json();
-    const currentCategory = categories[cardTypeValue];
-    // const images = currentCategory.map((name) => `${this.state.config.cardType}/${name}`);
+    const currentCategory = categories[cardTypeValue];    
     const images = Array.from({ length: +difficultyValue / 2 }, (_, index) => `${cardTypeValue}/${currentCategory[index]}`);
 
     setTimeout(() => this.timer.startTimer(), 3000);
@@ -127,10 +103,7 @@ export class Game extends BaseComponent {
 
     this.activeCard = undefined;
     this.isAnimate = false;
-    console.log('rightPairs', this.rightPairs);
-    console.log('wrongPairs', this.wrongPairs);
-    console.log('pairs', this.pairs);
-
+    
     if (this.rightPairs === this.pairs) {
       this.successFinishGame();
     }

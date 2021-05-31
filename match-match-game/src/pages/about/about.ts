@@ -2,8 +2,6 @@ import './about.scss';
 import { BaseComponent } from '../../shared/baseComponent';
 import { Rule } from './rule/rule';
 
-
-
 export class About extends BaseComponent {
   ruleProps = [
     {

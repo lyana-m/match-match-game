@@ -1,6 +1,6 @@
 import './option.scss';
 import { BaseComponent } from '../../../shared/baseComponent';
-import { IOptionInnerProps, IOptionProps } from '../select/select';
+import { IOptionInnerProps } from '../select/select';
 
 export class Option extends BaseComponent {
   constructor(item: IOptionInnerProps) {

@@ -5,7 +5,6 @@ import { Button } from '../header/button/button';
 import { FormField } from './form-field/form-fiels';
 import { UserPhoto } from './user-photo/user-photo';
 import { addUser } from '../../helpers/bd';
-import { imageSrc } from '../../classes/app';
 
 export class Registration extends BaseComponent {
   constructor() {
@@ -27,10 +26,7 @@ export class Registration extends BaseComponent {
     const userPhoto = new UserPhoto();
     const btnSubmit = new Button();
     const btnReset = new Button();
-
-    formHeader.element.innerHTML = `
-    Register new Player`;
-
+    formHeader.element.innerHTML = 'Register new Player';
     info.element.appendChild(fieldsWrapper.element);
     info.element.appendChild(userPhoto.element);
     fieldsWrapper.element.appendChild(firstName.element);
@@ -50,7 +46,6 @@ export class Registration extends BaseComponent {
     form.element.appendChild(btnContainer.element);
     this.element.appendChild(form.element);
     this.element.appendChild(overlay.element);
-
     form.element.addEventListener('submit', () => addUser());
     form.element.addEventListener('submit', () => {
       const btnReg = document.querySelector('.btn-reg');

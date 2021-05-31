@@ -2,10 +2,7 @@ import { BaseComponent } from '../shared/baseComponent';
 import '../pages/game/game.scss';
 
 export class Card extends BaseComponent {
-  // matched: false;
-  // active: false;
-  // picture: 'base64';
-
+  
   constructor(readonly images: string) {
     super('div', ['card']);
 

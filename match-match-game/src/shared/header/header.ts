@@ -2,11 +2,6 @@ import './header.scss';
 import { BaseComponent } from '../baseComponent';
 import { NavItem } from './nav-item/nav-item';
 import { Button } from './button/button';
-// import { getScoreTable } from '../../helpers/bd';
-// import { Game } from '../../classes/game';
-// import { imageSrc } from '../../classes/app';
-
-
 
 export class Header extends BaseComponent {
   navItemProps = [
@@ -51,19 +46,11 @@ export class Header extends BaseComponent {
     btnReg.element.classList.add('btn-reg');
     btnStart.element.classList.add('btn-start');
     btnStop.element.classList.add('btn-stop');
-
     btnStart.element.addEventListener('click', () => this.btnChange(btnStart.element, btnStop.element));
-
     btnStop.element.addEventListener('click', () => this.btnChange(btnStop.element, btnReg.element));
 
     this.navItemProps.forEach((item) => {
-      const navItem = new NavItem(item);
-      // if (this.navItemProps.indexOf(item) === 0) {
-      //   navItem.element.classList.add('nav__item_active');
-      // }
-      // if (this.navItemProps.indexOf(item) === 1) {
-      //   navItem.element.addEventListener('click', () => getScoreTable());
-      // }
+      const navItem = new NavItem(item);      
       navList.element.appendChild(navItem.element);
     });
 

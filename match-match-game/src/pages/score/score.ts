@@ -13,20 +13,20 @@ export class Score extends BaseComponent {
     const header = new BaseComponent('h2', ['score-header']);
     const wrapper = new BaseComponent('div', ['table-wrapper']);
     const table = new BaseComponent('table', ['table']);
-    const tbody = new BaseComponent('tbody');
-    // const entry = new Entry('Nicci Troiani', 'nicci@gmail.com', 300);
+    const tbody = new BaseComponent('tbody');    
     header.element.innerHTML = 'Best players';
     table.element.innerHTML = `
     <col style="width: 10%">
     <col style="width: 60%">
     <col style="width: 30%">`;
-    // tbody.element.appendChild(entry.element);
+
     if (users.length > 0) {
       users.forEach((user) => {
         const entry = new Entry(`${user.firstName} ${user.lastName}`, `${user.email}`, user.score, `${user.photo}`);
         tbody.element.appendChild(entry.element);
       });
     }
+
     table.element.appendChild(tbody.element);
     wrapper.element.appendChild(table.element);
     this.element.appendChild(header.element);
@@ -45,9 +45,7 @@ export class Score extends BaseComponent {
     (<IDBOpenDBRequest>dbReq).onsuccess = (event) => {
       db = (<IDBOpenDBRequest>event.target).result;
       const tx = db.transaction('users');
-      const userStore = tx.objectStore('users');
-
-      // Запрашиваем всех пользователей
+      const userStore = tx.objectStore('users');      
       const userReq = userStore.getAll();
 
       userReq.onsuccess = (event: Event) => {
@@ -61,6 +59,7 @@ export class Score extends BaseComponent {
         console.log('error getting all users');
       };
     };
+    
     (<IDBOpenDBRequest>dbReq).onerror = (event) => {
       alert('error opening database');
     };

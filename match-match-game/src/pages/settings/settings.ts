@@ -35,17 +35,8 @@ export class Settings extends BaseComponent {
         cardTypeValue = (<HTMLSelectElement>e.target).value;
       }
       if (e.target && (<HTMLElement>e.target).id === 'difficulty') {
-        difficultyValue = (<HTMLSelectElement>e.target).value;
-        // this.setCardSize(difficultyValue);
+        difficultyValue = (<HTMLSelectElement>e.target).value;        
       }
     });
-  }
-  // setCardSize(difficultyValue: string) {
-  //   const root: HTMLElement | null = document.querySelector(':root');
-  //   // const rootStyles = getComputedStyle(root!);
-  //   // const cardSize = rootStyles.getPropertyValue('--card-size');
-  //   if (+difficultyValue === 36) {
-  //   root!.style.setProperty('--card-size', '90px');
-  //   }
-  // }
+  }  
 }
