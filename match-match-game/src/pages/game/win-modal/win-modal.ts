@@ -7,6 +7,7 @@ import { Field } from '../../../classes/field';
 
 export class WinModal extends BaseComponent {
   timer: Timer;
+
   field: Field;
 
   constructor(timer: Timer, field: Field) {

@@ -13,7 +13,7 @@ let db: IDBDatabase;
 let dbReq: IDBOpenDBRequest;
 
 export function bdInit() {
-  dbReq = indexedDB.open('userDB', 1);
+  dbReq = indexedDB.open('lyana-m', 1);
 
   (<IDBOpenDBRequest>dbReq).onupgradeneeded = (event) => {
     db = (<IDBOpenDBRequest>event.target).result;
