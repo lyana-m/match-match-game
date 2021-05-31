@@ -1,13 +1,20 @@
 import './rule.scss';
 import { BaseComponent } from '../../../shared/baseComponent';
 
+interface IRule {
+  src: string;
+  alt: string;
+  text: string;
+  number: string;
+}
+
 export class Rule extends BaseComponent {
-  constructor(item: any) {
+  constructor(item: IRule) {
     super('div', ['rule-card']);
     this.render(item);
   }
 
-  render(item: any) {
+  render(item: IRule) {
     const rule = new BaseComponent('div', ['rule']);
     const text = new BaseComponent('p', ['rule-content']);
     const illustation = new BaseComponent('div', ['illustration']);

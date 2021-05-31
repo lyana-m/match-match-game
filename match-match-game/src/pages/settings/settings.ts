@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import './settings.scss';
 import { BaseComponent } from '../../shared/baseComponent';
 import { Select } from './select/select';
@@ -9,8 +7,8 @@ export interface ISettings {
   id: string;
 }
 
-export let cardTypeValue: string = 'animal';
-export let difficultyValue: string = '16';
+export let cardTypeValue = 'animal';
+export let difficultyValue = '16';
 
 export class Settings extends BaseComponent {
   selectProps: ISettings[] = [
@@ -30,8 +28,9 @@ export class Settings extends BaseComponent {
       this.element.appendChild(select.element);
     });
   }
+
   getSettings() {
-    document.addEventListener('change', function (e) {
+    document.addEventListener('change', (e) => {
       if (e.target && (<HTMLElement>e.target).id === 'cardType') {
         cardTypeValue = (<HTMLSelectElement>e.target).value;
       }
@@ -50,4 +49,3 @@ export class Settings extends BaseComponent {
   //   }
   // }
 }
-

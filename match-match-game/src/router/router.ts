@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 interface IRoute {
   path: string;
   template: string | Promise<string>
@@ -25,7 +23,7 @@ export class Router {
       throw new Error('error');
     }
     if (matchedRoute.template instanceof Promise) {
-      matchedRoute.template.then(value => routerOutletElement.innerHTML = value)
+      matchedRoute.template.then((value) => routerOutletElement.innerHTML = value);
     } else {
       routerOutletElement.innerHTML = matchedRoute.template;
     }

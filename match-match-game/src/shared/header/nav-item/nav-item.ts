@@ -1,16 +1,21 @@
-/* eslint-disable */
-
 import './nav-item.scss';
 import { BaseComponent } from '../../baseComponent';
 import { router } from '../../../index';
 
+interface INavItem {
+  src: string;
+  href: string;
+  text: string;
+  id: string;
+}
+
 export class NavItem extends BaseComponent {
-  constructor(item: any) {
+  constructor(item: INavItem) {
     super('li', ['nav__item']);
     this.render(item);
   }
 
-  render(item: any) {
+  render(item: INavItem) {
     const img = new BaseComponent('img', ['nav__icon']);
     const link = new BaseComponent('a', ['nav__link']);
     img.element.setAttribute('src', item.src);
@@ -25,8 +30,8 @@ export class NavItem extends BaseComponent {
 
   makeLinkActive(event: MouseEvent) {
     const activeLink = document.querySelector('.nav__item_active');
-    activeLink?.classList.remove('nav__item_active');    
-    const currentTarget = event.target as HTMLElement;    
+    activeLink?.classList.remove('nav__item_active');
+    const currentTarget = event.target as HTMLElement;
     currentTarget?.closest('.nav__item')?.classList.add('nav__item_active');
   }
 }

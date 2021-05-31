@@ -1,24 +1,33 @@
-/* eslint-disable */
-
-export function validate() {
-  validateFirstName();
-  validateLastName();
-  validateEmail();
+function setErrorFor(input: HTMLInputElement, message: string) {
+  const submit = <HTMLInputElement>document.querySelector('.btn-submit');
+  const formControl = <HTMLElement>input.parentElement;
+  const small = <HTMLElement>formControl.querySelector('small');
+  formControl.className = 'field-container error';
+  small.innerText = message;
+  submit.setAttribute('disabled', '');
+  submit.classList.add('btn-disabled');
 }
 
-export function clearForm() {
-  const firstName = <HTMLInputElement>document.querySelector('.first-name');
-  const lastName = <HTMLInputElement>document.querySelector('.last-name');
-  const email = <HTMLInputElement>document.querySelector('.e-mail');
-  const canvas = <HTMLCanvasElement>document.querySelector('.canvas');
-  const ctx = canvas.getContext("2d");
-  ctx!.clearRect(0, 0, canvas.width, canvas.height)
-  firstName.value = '';
-  lastName.value = '';
-  email.value = '';
-  setErrorFor(firstName, 'First name cannot be blank');
-  setErrorFor(lastName, 'Last name cannot be blank');
-  setErrorFor(email, 'E-mail cannot be blank');
+function setSuccessFor(input: HTMLInputElement) {
+  const submit = <HTMLInputElement>document.querySelector('.btn-submit');
+  const formControl = <HTMLElement>input.parentElement;
+  formControl.className = 'field-container success';
+  submit.removeAttribute('disabled');
+  submit.classList.remove('btn-disabled');
+}
+
+function isNameValid(name: string) {
+  // const regName = /^(?=.*[a-z])[a-zA-Z0-9]{2,30}$/;
+  // const regName = /^(?=.*[a-z])[^(~!@#$%*&()_—+=|:;"'`<>,.?\\/\\^\s)]{1,30}$/
+  const regName = /[^0-9]/i;
+  const serviceDigitsRegex = /[(~!@#$%*()_—+=|:;"'`<>,.?/^)]/i;
+  return regName.test(name) || regName.test(name);
+}
+
+function isEmailValid(email: string) {
+  // const regEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+  const regEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i;
+  return regEmail.test(email);
 }
 
 function validateFirstName() {
@@ -60,34 +69,23 @@ function validateEmail() {
   }
 }
 
-function setErrorFor(input: HTMLInputElement, message: string) {
-  const submit = <HTMLInputElement>document.querySelector('.btn-submit');
-  const formControl = <HTMLElement>input.parentElement;
-  const small = <HTMLElement>formControl.querySelector('small');
-  formControl.className = 'field-container error';
-  small.innerText = message;
-  submit.setAttribute('disabled', '');
-  submit.classList.add('btn-disabled');
+export function validate() {
+  validateFirstName();
+  validateLastName();
+  validateEmail();
 }
 
-function setSuccessFor(input: HTMLInputElement) {
-  const submit = <HTMLInputElement>document.querySelector('.btn-submit');
-  const formControl = <HTMLElement>input.parentElement;
-  formControl.className = 'field-container success';
-  submit.removeAttribute('disabled');
-  submit.classList.remove('btn-disabled');
-}
-
-function isNameValid(name: string) {
-  // const regName = /^(?=.*[a-z])[a-zA-Z0-9]{2,30}$/;
-  // const regName = /^(?=.*[a-z])[^(~!@#$%*&()_—+=|:;"'`<>,.?\\/\\^\s)]{1,30}$/
-  const regName = /[^0-9]/i;
-  const serviceDigitsRegex = /[(~!@#$%*()_—+=|:;"'`<>,.?/^)]/i;
-  return regName.test(name) || regName.test(name);
-}
-
-function isEmailValid(email: string) {
-  // const regEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-  const regEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i;
-  return regEmail.test(email);
+export function clearForm() {
+  const firstName = <HTMLInputElement>document.querySelector('.first-name');
+  const lastName = <HTMLInputElement>document.querySelector('.last-name');
+  const email = <HTMLInputElement>document.querySelector('.e-mail');
+  const canvas = <HTMLCanvasElement>document.querySelector('.canvas');
+  const ctx = canvas.getContext('2d');
+  ctx!.clearRect(0, 0, canvas.width, canvas.height);
+  firstName.value = '';
+  lastName.value = '';
+  email.value = '';
+  setErrorFor(firstName, 'First name cannot be blank');
+  setErrorFor(lastName, 'Last name cannot be blank');
+  setErrorFor(email, 'E-mail cannot be blank');
 }

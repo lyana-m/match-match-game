@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import './style.scss';
 import { App } from './classes/app';
 import { Router } from './router/router';

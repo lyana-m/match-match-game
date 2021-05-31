@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import './win-modal.scss';
 import { BaseComponent } from '../../../shared/baseComponent';
 import { Button } from '../../../shared/header/button/button';
@@ -26,14 +24,14 @@ export class WinModal extends BaseComponent {
     btn.element.innerHTML = 'ok';
     btn.element.addEventListener('click', () => this.closeModal());
     btn.element.addEventListener('click', () => this.updateScoreLink());
-    btn.element.addEventListener('click', () => this.stopBtnChange())
+    btn.element.addEventListener('click', () => this.stopBtnChange());
     winCongrats.element.appendChild(congrats.element);
     winCongrats.element.appendChild(btn.element);
     this.element.appendChild(winCongrats.element);
     this.element.appendChild(overlay.element);
   }
 
-  showModal() {    
+  showModal() {
     this.element.style.display = 'flex';
     this.timer.clearInterval();
     const time = this.timer.getTime();
@@ -58,6 +56,6 @@ export class WinModal extends BaseComponent {
   async updateScoreLink() {
     routes[1].template = await getScoreTemplate();
     const scoreLink: HTMLElement = document.querySelectorAll('.nav__link')[1] as HTMLElement;
-    scoreLink.click()
+    scoreLink.click();
   }
 }

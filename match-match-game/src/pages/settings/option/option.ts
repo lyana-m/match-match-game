@@ -1,4 +1,3 @@
-/* eslint-disable */
 import './option.scss';
 import { BaseComponent } from '../../../shared/baseComponent';
 import { IOptionInnerProps, IOptionProps } from '../select/select';
