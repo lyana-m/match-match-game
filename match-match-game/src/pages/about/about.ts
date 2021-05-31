@@ -19,7 +19,7 @@ export class About extends BaseComponent {
     {
       src: './assets/images/game.png',
       alt: 'game',
-      text: 'Start you new game! Remember card positions and match it before times up',
+      text: 'Remember card positions in 30 seconds and match it as fast as possible',
       number: '3',
     },
   ];

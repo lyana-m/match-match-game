@@ -41,6 +41,7 @@ export class Game extends BaseComponent {
     this.wrongPairs = 0;
     this.rightPairs = 0;
     this.pairs = 0;
+    this.field.clear();
 
     const root: HTMLElement | null = document.querySelector(':root');
     if (+difficultyValue === 36) {
@@ -55,8 +56,7 @@ export class Game extends BaseComponent {
     const currentCategory = categories[cardTypeValue];
     const images = Array.from({ length: +difficultyValue / 2 }, (_, index) => `${cardTypeValue}/${currentCategory[index]}`);
 
-    setTimeout(() => this.timer.startTimer(), 3000);
-    this.field.clear();
+    setTimeout(() => this.timer.startTimer(), 30000);
 
     const cards = images
       .concat(images)
@@ -85,7 +85,7 @@ export class Game extends BaseComponent {
       await new Promise((resolve) => setTimeout(resolve, 300));
       this.activeCard.showFailedState();
       card.showFailedState();
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 600));
       this.activeCard.resetFailedState();
       card.resetFailedState();
       await new Promise((resolve) => setTimeout(resolve, 300));

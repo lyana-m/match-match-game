@@ -19,6 +19,7 @@
     "no-plusplus": "off",
     "import/no-cycle": "warn",
     "class-methods-use-this": "warn",
+    "no-useless-escape": "warn",
     "no-bitwise": "warn",
     "import/no-mutable-exports": "warn",
     "no-control-regex": "warn",

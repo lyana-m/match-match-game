@@ -34,7 +34,7 @@ export class Score extends BaseComponent {
   }
 
   static renderScoreTable = async (): Promise<IUser[]> => new Promise<IUser[]>((resolve) => {
-    const dbReq = indexedDB.open('userDB', 1);
+    const dbReq = indexedDB.open('lyana-m', 1);
     let db: IDBDatabase;
 
     (<IDBOpenDBRequest>dbReq).onupgradeneeded = (event) => {
