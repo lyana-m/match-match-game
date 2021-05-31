@@ -17,6 +17,11 @@
   ],
   "rules": {
     "no-plusplus": "off",
+    "import/no-cycle": "warn",
+    "class-methods-use-this": "warn",
+    "no-bitwise": "warn",
+    "@typescript-eslint/no-shadow": "warn",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
     "no-console": "warn",
     "max-len": ["warn", { "code": 120 }],
     "indent": ["warn", 2, {

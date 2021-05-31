@@ -1,10 +1,13 @@
 import './entry.scss';
-import { BaseComponent } from "../../../shared/baseComponent";
+import { BaseComponent } from '../../../shared/baseComponent';
 
 export class Entry extends BaseComponent {
   userName: string;
+
   email: string;
+
   score: number;
+
   photo: string;
 
   constructor(userName: string, email: string, score: number, photo: string) {

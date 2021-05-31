@@ -18,7 +18,6 @@ interface IState {
 }
 
 export class Game extends BaseComponent {
-
   // state: IState = {
   // //   user: {
   // //     id: 1,
@@ -145,19 +144,19 @@ export class Game extends BaseComponent {
     about.click();
   }
 
-  successFinishGame() {  
+  successFinishGame() {
     this.winModal.showModal();
     const score = this.calculateScore();
     const id = getIdFromLS();
     if (id) {
       saveScore(id, score);
-    }    
+    }
   }
 
   calculateScore() {
     const arrTime = this.timer.getTime().split(':');
     const seconds = +arrTime[0] * 60 + +arrTime[1];
     const userScore = (this.rightPairs - this.wrongPairs) * 100 - seconds * 10;
-    return userScore < 0 ? 0 : userScore;    
+    return userScore < 0 ? 0 : userScore;
   }
 }

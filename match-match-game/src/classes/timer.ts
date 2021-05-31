@@ -18,10 +18,10 @@ export class Timer extends BaseComponent {
       ${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
       this.element.innerHTML = strTimer;
       timerUnit++;
-    }, 1000);  
+    }, 1000);
   }
 
-  stopTimer() {    
+  stopTimer() {
     // if (this.timer) {
     //   clearInterval(this.timer);
     //   this.element.innerHTML = '00:00';

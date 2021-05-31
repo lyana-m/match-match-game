@@ -26,7 +26,7 @@ export class FormField extends BaseComponent {
     const small = new BaseComponent('small', []);
 
     input.element.setAttribute('type', `${this.inputType}`);
-    input.element.setAttribute('id', `${this.inputId}`)
+    input.element.setAttribute('id', `${this.inputId}`);
     input.element.setAttribute('placeholder', ' ');
     input.element.addEventListener('input', () => validate());
     label.element.innerHTML = `${this.label}`;

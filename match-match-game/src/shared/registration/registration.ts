@@ -84,7 +84,7 @@ export class Registration extends BaseComponent {
     if (image) {
       userPhoto.element.innerHTML = `<img src=${image}>`;
     } else {
-      userPhoto.element.innerHTML = `<img src="./assets/icons/user-no-photo.svg">`;
+      userPhoto.element.innerHTML = '<img src="./assets/icons/user-no-photo.svg">';
     }
     btnContainer?.appendChild(userPhoto.element);
   }

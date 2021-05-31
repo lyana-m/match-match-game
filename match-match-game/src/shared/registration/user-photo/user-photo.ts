@@ -1,5 +1,5 @@
 import './user-photo.scss';
-import { BaseComponent } from "../../baseComponent";
+import { BaseComponent } from '../../baseComponent';
 
 export class UserPhoto extends BaseComponent {
   constructor() {
@@ -7,6 +7,7 @@ export class UserPhoto extends BaseComponent {
     this.render();
     // this.addPhoto();
   }
+
   render() {
     const label = new BaseComponent('label', ['custom-photo-upload']);
     const image = new BaseComponent('img', ['image-upload']);
