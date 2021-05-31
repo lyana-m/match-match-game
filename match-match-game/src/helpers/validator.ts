@@ -16,16 +16,10 @@ function setSuccessFor(input: HTMLInputElement) {
   submit.classList.remove('btn-disabled');
 }
 
-function isNameValid(name: string) {
-  // const regName = /^(?=.*[a-z])[a-zA-Z0-9]{2,30}$/;
-  // const regName = /^(?=.*[a-z])[^(~!@#$%*&()_—+=|:;"'`<>,.?\\/\\^\s)]{1,30}$/
-  const regName = /[^0-9]/i;
-  const serviceDigitsRegex = /[(~!@#$%*()_—+=|:;"'`<>,.?/^)]/i;
-  return regName.test(name) || regName.test(name);
-}
+const regUserName = /^[^~!@#$%*_+=|:;"'\x60\x3c\x3e,.?/\^)(-]{1,30}$/;
+const regNumbers = /^[0-9]*[\p{L} ][\p{L}0-9 ]*$/u;
 
-function isEmailValid(email: string) {
-  // const regEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+function isEmailValid(email: string) {  
   const regEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i;
   return regEmail.test(email);
 }
@@ -36,8 +30,10 @@ function validateFirstName() {
     setErrorFor(firstName, 'First name cannot be blank');
   } else if (firstName.value.length > 30) {
     setErrorFor(firstName, 'First name must not exceed 30 characters');
-  } else if (!isNameValid(firstName.value)) {
-    setErrorFor(firstName, 'Not a valid first name');
+  } else if (!regUserName.test(firstName.value)) {
+    setErrorFor(firstName, 'First name cannot contain service character');
+  } else if (!regNumbers.test(firstName.value)) {
+    setErrorFor(firstName, 'First name cannot contain only numbers');
   } else {
     setSuccessFor(firstName);
   }
@@ -49,8 +45,10 @@ function validateLastName() {
     setErrorFor(lastName, 'Last name cannot be blank');
   } else if (lastName.value.length > 30) {
     setErrorFor(lastName, 'Last name must not exceed 30 characters');
-  } else if (!isNameValid(lastName.value)) {
-    setErrorFor(lastName, 'Not a valid last name');
+  } else if (!regUserName.test(lastName.value)) {
+    setErrorFor(lastName, 'Last name cannot contain service character');
+  } else if (!regNumbers.test(lastName.value)) {
+    setErrorFor(lastName, 'Last name cannot contain only numbers');
   } else {
     setSuccessFor(lastName);
   }
