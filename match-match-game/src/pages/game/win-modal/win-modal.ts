@@ -26,6 +26,7 @@ export class WinModal extends BaseComponent {
     btn.element.innerHTML = 'ok';
     btn.element.addEventListener('click', () => this.closeModal());
     btn.element.addEventListener('click', () => this.updateScoreLink());
+    btn.element.addEventListener('click', () => this.stopBtnChange())
     winCongrats.element.appendChild(congrats.element);
     winCongrats.element.appendChild(btn.element);
     this.element.appendChild(winCongrats.element);
@@ -41,6 +42,17 @@ export class WinModal extends BaseComponent {
 
   closeModal() {
     this.element.style.display = 'none';
+  }
+
+  stopBtnChange() {
+    const btnStop = document.querySelector('.btn-stop');
+    const btnReg = document.querySelector('.btn-reg');
+    const userPhoto = document.querySelector('.registered-user-photo');
+    (<HTMLElement>btnStop).style.display = 'none';
+    (<HTMLElement>btnReg).style.display = 'inline-block';
+    localStorage.removeItem('image');
+    (<HTMLElement>userPhoto).remove();
+    // (<HTMLElement>userPhoto).style.display = 'none';
   }
 
   async updateScoreLink() {

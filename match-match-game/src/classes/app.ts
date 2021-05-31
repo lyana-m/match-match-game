@@ -34,8 +34,8 @@ export class App {
   }
 
   start() {
-    bdInit(); 
-    
+    bdInit();
+    localStorage.removeItem('image');    
     const btnReg = document.querySelector('.btn-reg');
     btnReg?.addEventListener('click', () => validate());
     btnReg?.addEventListener('click', () => this.registration.showRegistrationForm());

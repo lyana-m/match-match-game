@@ -21,3 +21,16 @@ td {
   font-size: 18px;
   text-align: right;
 }
+
+.score-photo-container {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}

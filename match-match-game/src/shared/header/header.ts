@@ -52,9 +52,9 @@ export class Header extends BaseComponent {
     btnStart.element.classList.add('btn-start');
     btnStop.element.classList.add('btn-stop');
     
-    btnStart.element.addEventListener('click', () => this.hideBtnStart());
+    btnStart.element.addEventListener('click', () => this.btnChange(btnStart.element, btnStop.element));
 
-    btnStop.element.addEventListener('click', () => this.hideBtnStop());
+    btnStop.element.addEventListener('click', () => this.btnChange(btnStop.element, btnReg.element));
 
     this.navItemProps.forEach((item) => {
 
@@ -82,17 +82,8 @@ export class Header extends BaseComponent {
     this.element.appendChild(wrapper.element);
   }
 
-  hideBtnStart() {
-    const btnStop = document.querySelector('.btn-stop');
-    const btnStart = document.querySelector('.btn-start');
-    (<HTMLElement>btnStop).style.display = 'inline-block';
-    (<HTMLElement>btnStart).style.display = 'none';
-  }
-
-  hideBtnStop() {
-    const btnStop = document.querySelector('.btn-stop');
-    const btnReg = document.querySelector('.btn-reg');
-    (<HTMLElement>btnStop).style.display = 'none';
-    (<HTMLElement>btnReg).style.display = 'inline-block';
-  }
+  btnChange(btnHide: HTMLElement, btnShow: HTMLElement) {
+    btnShow.style.display = 'inline-block';
+    btnHide.style.display = 'none';
+  }  
 }

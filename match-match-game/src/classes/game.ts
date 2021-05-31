@@ -139,19 +139,19 @@ export class Game extends BaseComponent {
 
   stopGame() {
     const about: HTMLElement = document.querySelectorAll('.nav__link')[0] as HTMLElement;
+    const photo = document.querySelector('.registered-user-photo');
     this.timer.stopTimer();
+    photo?.remove();
     about.click();
   }
 
-  successFinishGame() {
-    // this.timer.stopTimer();
+  successFinishGame() {  
     this.winModal.showModal();
     const score = this.calculateScore();
     const id = getIdFromLS();
     if (id) {
-      saveScore(id, score);  
-    }
-    // getScoreTable();
+      saveScore(id, score);
+    }    
   }
 
   calculateScore() {

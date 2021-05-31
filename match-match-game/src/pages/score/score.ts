@@ -24,7 +24,7 @@ export class Score extends BaseComponent {
     // tbody.element.appendChild(entry.element);
     if (users.length > 0) {
       users.forEach(user => {
-        const entry = new Entry(`${user.firstName} ${user.lastName}`, `${user.email}`, user.score);
+        const entry = new Entry(`${user.firstName} ${user.lastName}`, `${user.email}`, user.score, `${user.photo}`);
         tbody.element.appendChild(entry.element);
       });
     }

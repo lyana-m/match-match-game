@@ -23,15 +23,15 @@ export class Registration extends BaseComponent {
     const fieldsWrapper = new BaseComponent('div', []);
     const firstName = new FormField('text', 'first-name', 'first-name', 'First name');
     const lastName = new FormField('text', 'last-name', 'last-name', 'Last name');
-    const email = new FormField('email', 'email', 'e-mail', 'E-mail');    
+    const email = new FormField('email', 'email', 'e-mail', 'E-mail');
     const userPhoto = new UserPhoto();
     const btnSubmit = new Button();
     const btnReset = new Button();
 
     formHeader.element.innerHTML = `
     Register new Player`;
-    
-    info.element.appendChild(fieldsWrapper.element);    
+
+    info.element.appendChild(fieldsWrapper.element);
     info.element.appendChild(userPhoto.element);
     fieldsWrapper.element.appendChild(firstName.element);
     fieldsWrapper.element.appendChild(lastName.element);
@@ -65,7 +65,7 @@ export class Registration extends BaseComponent {
       e.preventDefault();
       validate();
       this.hideRegistrationForm();
-    });    
+    });
   }
 
   showRegistrationForm() {
@@ -81,7 +81,11 @@ export class Registration extends BaseComponent {
     const btnContainer = document.querySelector('.btn-photo-container');
     const userPhoto = new BaseComponent('div', ['registered-user-photo']);
     const image = await localStorage.getItem('image');
-    userPhoto.element.innerHTML = `<img src=${image}>`;
+    if (image) {
+      userPhoto.element.innerHTML = `<img src=${image}>`;
+    } else {
+      userPhoto.element.innerHTML = `<img src="./assets/icons/user-no-photo.svg">`;
+    }
     btnContainer?.appendChild(userPhoto.element);
   }
 }

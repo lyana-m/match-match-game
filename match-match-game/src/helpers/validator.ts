@@ -10,6 +10,9 @@ export function clearForm() {
   const firstName = <HTMLInputElement>document.querySelector('.first-name');
   const lastName = <HTMLInputElement>document.querySelector('.last-name');
   const email = <HTMLInputElement>document.querySelector('.e-mail');
+  const canvas = <HTMLCanvasElement>document.querySelector('.canvas');
+  const ctx = canvas.getContext("2d");
+  ctx!.clearRect(0, 0, canvas.width, canvas.height)
   firstName.value = '';
   lastName.value = '';
   email.value = '';
