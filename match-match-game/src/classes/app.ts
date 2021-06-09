@@ -63,8 +63,7 @@ export class App {
         const image = new Image();
         imageSrc = (<FileReader>event.target).result as string;
         localStorage.setItem('image', `${imageSrc}`);
-        image.src = imageSrc;
-        // console.log(image.src);
+        image.src = imageSrc;        
         image.onload = () => {
           canvas.width = image.width;
           canvas.height = image.height;

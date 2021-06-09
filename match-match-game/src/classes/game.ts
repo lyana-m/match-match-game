@@ -8,6 +8,17 @@ import { Timer } from './timer';
 import { cardTypeValue, difficultyValue } from '../pages/settings/settings';
 import { getIdFromLS, saveScore } from '../helpers/bd';
 
+const DIFFICULTY = {
+  HARD: 36,
+  EASY: 16
+}
+const TIMER_DELAY = 30000;
+const SHOW_FAILED_STATE_DELAY = 300;
+const RESET_FAILED_STATE_DELAY = 600;
+const CLOSE_CARD_DELAY = 300;
+const SHOW_SUCCSESS_STATE_DELAY = 300;
+const MIN_SCORE = 0;
+
 export class Game extends BaseComponent {
   private readonly field: Field;
 
@@ -44,10 +55,10 @@ export class Game extends BaseComponent {
     this.field.clear();
 
     const root: HTMLElement | null = document.querySelector(':root');
-    if (+difficultyValue === 36) {
+    if (+difficultyValue === DIFFICULTY.HARD) {
       root!.style.setProperty('--card-size', '90px');
     }
-    if (+difficultyValue === 16) {
+    if (+difficultyValue === DIFFICULTY.EASY) {
       root!.style.setProperty('--card-size', '135px');
     }
 
@@ -56,7 +67,7 @@ export class Game extends BaseComponent {
     const currentCategory = categories[cardTypeValue];
     const images = Array.from({ length: +difficultyValue / 2 }, (_, index) => `${cardTypeValue}/${currentCategory[index]}`);
 
-    setTimeout(() => this.timer.startTimer(), 30000);
+    setTimeout(() => this.timer.startTimer(), TIMER_DELAY);
 
     const cards = images
       .concat(images)
@@ -82,19 +93,19 @@ export class Game extends BaseComponent {
       return;
     }
     if (this.activeCard.images !== card.images) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, SHOW_FAILED_STATE_DELAY));
       this.activeCard.showFailedState();
       card.showFailedState();
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, RESET_FAILED_STATE_DELAY));
       this.activeCard.resetFailedState();
       card.resetFailedState();
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, CLOSE_CARD_DELAY));
       this.activeCard.closeCard();
       card.closeCard();
       this.wrongPairs++;
     }
     if (this.activeCard.images === card.images) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, SHOW_SUCCSESS_STATE_DELAY));
       this.activeCard.showSuccessState();
       card.showSuccessState();
       this.rightPairs++;
@@ -129,6 +140,6 @@ export class Game extends BaseComponent {
     const arrTime = this.timer.getTime().split(':');
     const seconds = +arrTime[0] * 60 + +arrTime[1];
     const userScore = (this.rightPairs - this.wrongPairs) * 100 - seconds * 10;
-    return userScore < 0 ? 0 : userScore;
+    return userScore < MIN_SCORE ? MIN_SCORE : userScore;
   }
 }

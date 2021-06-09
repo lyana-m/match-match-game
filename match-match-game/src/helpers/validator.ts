@@ -1,3 +1,5 @@
+const CHARACTER_LIMIT = 30;
+
 function setErrorFor(input: HTMLInputElement, message: string) {
   const submit = <HTMLInputElement>document.querySelector('.btn-submit');
   const formControl = <HTMLElement>input.parentElement;
@@ -28,8 +30,8 @@ function validateFirstName() {
   const firstName = <HTMLInputElement>document.querySelector('.first-name');
   if (!firstName.value) {
     setErrorFor(firstName, 'First name cannot be blank');
-  } else if (firstName.value.length > 30) {
-    setErrorFor(firstName, 'First name must not exceed 30 characters');
+  } else if (firstName.value.length > CHARACTER_LIMIT) {
+    setErrorFor(firstName, `First name must not exceed ${CHARACTER_LIMIT} characters`);
   } else if (!regUserName.test(firstName.value)) {
     setErrorFor(firstName, 'First name cannot contain service character');
   } else if (!regNumbers.test(firstName.value)) {
@@ -43,8 +45,8 @@ function validateLastName() {
   const lastName = <HTMLInputElement>document.querySelector('.last-name');
   if (!lastName.value) {
     setErrorFor(lastName, 'Last name cannot be blank');
-  } else if (lastName.value.length > 30) {
-    setErrorFor(lastName, 'Last name must not exceed 30 characters');
+  } else if (lastName.value.length > CHARACTER_LIMIT) {
+    setErrorFor(lastName, `Last name must not exceed ${CHARACTER_LIMIT} characters`);
   } else if (!regUserName.test(lastName.value)) {
     setErrorFor(lastName, 'Last name cannot contain service character');
   } else if (!regNumbers.test(lastName.value)) {
@@ -58,8 +60,8 @@ function validateEmail() {
   const email = <HTMLInputElement>document.querySelector('.e-mail');
   if (!email.value) {
     setErrorFor(email, 'E-mail cannot be blank');
-  } else if (email.value.length > 30) {
-    setErrorFor(email, 'E-mail must not exceed 30 characters');
+  } else if (email.value.length > CHARACTER_LIMIT) {
+    setErrorFor(email, `E-mail must not exceed ${CHARACTER_LIMIT} characters`);
   } else if (!isEmailValid(email.value)) {
     setErrorFor(email, 'Not a valid e-mail');
   } else {

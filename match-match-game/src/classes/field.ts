@@ -2,7 +2,7 @@ import '../pages/game/game.scss';
 import { BaseComponent } from '../shared/baseComponent';
 import { Card } from './card';
 
-const SHOW_TIME = 30;
+const SHOW_TIME = 30000;
 
 export class Field extends BaseComponent {
   cards: Card[] = [];
@@ -21,6 +21,6 @@ export class Field extends BaseComponent {
     this.cards.forEach((card) => this.element.appendChild(card.element));
     setTimeout(() => {
       this.cards.forEach((card) => card.closeCard());
-    }, SHOW_TIME * 1000);
+    }, SHOW_TIME);
   }
 }
