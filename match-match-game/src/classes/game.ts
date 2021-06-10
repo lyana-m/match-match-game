@@ -7,6 +7,7 @@ import { Field } from './field';
 import { Timer } from './timer';
 import { cardTypeValue, difficultyValue } from '../pages/settings/settings';
 import { getIdFromLS, saveScore } from '../helpers/bd';
+import { delay } from '../helpers/utilities';
 
 const DIFFICULTY = {
   HARD: 36,
@@ -93,19 +94,19 @@ export class Game extends BaseComponent {
       return;
     }
     if (this.activeCard.images !== card.images) {
-      await new Promise((resolve) => setTimeout(resolve, SHOW_FAILED_STATE_DELAY));
+      await delay(SHOW_FAILED_STATE_DELAY);
       this.activeCard.showFailedState();
       card.showFailedState();
-      await new Promise((resolve) => setTimeout(resolve, RESET_FAILED_STATE_DELAY));
+      await delay(RESET_FAILED_STATE_DELAY);
       this.activeCard.resetFailedState();
       card.resetFailedState();
-      await new Promise((resolve) => setTimeout(resolve, CLOSE_CARD_DELAY));
+      await delay(CLOSE_CARD_DELAY);
       this.activeCard.closeCard();
       card.closeCard();
       this.wrongPairs++;
     }
-    if (this.activeCard.images === card.images) {
-      await new Promise((resolve) => setTimeout(resolve, SHOW_SUCCSESS_STATE_DELAY));
+    if (this.activeCard.images === card.images) {  
+      await delay(SHOW_SUCCSESS_STATE_DELAY);
       this.activeCard.showSuccessState();
       card.showSuccessState();
       this.rightPairs++;
