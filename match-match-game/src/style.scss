@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400;500;700;900&display=swap");
+
+html {
+  box-sizing: border-box;
+  font-family: "Roboto";
+  font-style: normal;
+  font-size: 14px;
+  color: white;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {  
+  position: relative;
+  font-family: "Roboto";
+  font-style: normal;
+  font-size: 14px;
+  color: white;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+

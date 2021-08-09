@@ -1,0 +1,18 @@
+.game-rules {
+  width: 800px;
+  margin: 0 auto;
+  padding: 30px 50px;
+  background: linear-gradient(160deg, #92b6b1 0%, #788aa3 100%);
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.65);
+}
+
+.game-rules-header {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.rule-cards-container {
+  display: flex;
+  flex-direction: column;
+}
